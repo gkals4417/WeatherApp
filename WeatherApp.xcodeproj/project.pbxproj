@@ -9,21 +9,30 @@
 /* Begin PBXBuildFile section */
 		4D20C2FB28ED300000C279E4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D20C2FA28ED300000C279E4 /* AppDelegate.swift */; };
 		4D20C2FD28ED300000C279E4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D20C2FC28ED300000C279E4 /* SceneDelegate.swift */; };
-		4D20C2FF28ED300000C279E4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D20C2FE28ED300000C279E4 /* ViewController.swift */; };
+		4D20C2FF28ED300000C279E4 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D20C2FE28ED300000C279E4 /* MainViewController.swift */; };
 		4D20C30228ED300000C279E4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D20C30028ED300000C279E4 /* Main.storyboard */; };
-		4D20C30528ED300000C279E4 /* WeatherApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4D20C30328ED300000C279E4 /* WeatherApp.xcdatamodeld */; };
+		4D20C30528ED300000C279E4 /* SavedLocationData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4D20C30328ED300000C279E4 /* SavedLocationData.xcdatamodeld */; };
 		4D20C30728ED300100C279E4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4D20C30628ED300100C279E4 /* Assets.xcassets */; };
 		4D20C30A28ED300100C279E4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D20C30828ED300100C279E4 /* LaunchScreen.storyboard */; };
 		4D20C31228ED382A00C279E4 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D20C31128ED382A00C279E4 /* Constants.swift */; };
 		4D20C31828ED3BB100C279E4 /* WeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D20C31728ED3BB100C279E4 /* WeatherModel.swift */; };
 		4D20C31A28ED3C4B00C279E4 /* WeatherNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D20C31928ED3C4B00C279E4 /* WeatherNetworkManager.swift */; };
+		4D20C31C28EE721F00C279E4 /* LocationListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D20C31B28EE721F00C279E4 /* LocationListViewController.swift */; };
+		4D20C32028EE725E00C279E4 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D20C31F28EE725E00C279E4 /* SettingViewController.swift */; };
+		4D7C84BE28EE82D200FD4B0C /* SideMenu in Frameworks */ = {isa = PBXBuildFile; productRef = 4D7C84BD28EE82D200FD4B0C /* SideMenu */; };
+		4D7C84C028EE885A00FD4B0C /* LocationListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7C84BF28EE885A00FD4B0C /* LocationListCell.swift */; };
+		4D7C84C228EE8B0D00FD4B0C /* SettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7C84C128EE8B0D00FD4B0C /* SettingCell.swift */; };
+		4D7C84C428EE8EB000FD4B0C /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7C84C328EE8EB000FD4B0C /* CoreDataManager.swift */; };
+		4D7C84D628EE95F900FD4B0C /* WeatherManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7C84D528EE95F900FD4B0C /* WeatherManager.swift */; };
+		4D7C84E128EE98B600FD4B0C /* SavedLocationData+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7C84DF28EE98B600FD4B0C /* SavedLocationData+CoreDataClass.swift */; };
+		4D7C84E228EE98B600FD4B0C /* SavedLocationData+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7C84E028EE98B600FD4B0C /* SavedLocationData+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		4D20C2F728ED300000C279E4 /* WeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D20C2FA28ED300000C279E4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4D20C2FC28ED300000C279E4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		4D20C2FE28ED300000C279E4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		4D20C2FE28ED300000C279E4 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		4D20C30128ED300000C279E4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4D20C30428ED300000C279E4 /* WeatherApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = WeatherApp.xcdatamodel; sourceTree = "<group>"; };
 		4D20C30628ED300100C279E4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -32,6 +41,14 @@
 		4D20C31128ED382A00C279E4 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		4D20C31728ED3BB100C279E4 /* WeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherModel.swift; sourceTree = "<group>"; };
 		4D20C31928ED3C4B00C279E4 /* WeatherNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherNetworkManager.swift; sourceTree = "<group>"; };
+		4D20C31B28EE721F00C279E4 /* LocationListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationListViewController.swift; sourceTree = "<group>"; };
+		4D20C31F28EE725E00C279E4 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		4D7C84BF28EE885A00FD4B0C /* LocationListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationListCell.swift; sourceTree = "<group>"; };
+		4D7C84C128EE8B0D00FD4B0C /* SettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCell.swift; sourceTree = "<group>"; };
+		4D7C84C328EE8EB000FD4B0C /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		4D7C84D528EE95F900FD4B0C /* WeatherManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherManager.swift; sourceTree = "<group>"; };
+		4D7C84DF28EE98B600FD4B0C /* SavedLocationData+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SavedLocationData+CoreDataClass.swift"; sourceTree = "<group>"; };
+		4D7C84E028EE98B600FD4B0C /* SavedLocationData+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SavedLocationData+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,6 +56,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4D7C84BE28EE82D200FD4B0C /* SideMenu in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -64,12 +82,12 @@
 		4D20C2F928ED300000C279E4 /* WeatherApp */ = {
 			isa = PBXGroup;
 			children = (
+				4D20C30328ED300000C279E4 /* SavedLocationData.xcdatamodeld */,
 				4D20C2FA28ED300000C279E4 /* AppDelegate.swift */,
 				4D20C2FC28ED300000C279E4 /* SceneDelegate.swift */,
 				4D20C30628ED300100C279E4 /* Assets.xcassets */,
 				4D20C30828ED300100C279E4 /* LaunchScreen.storyboard */,
 				4D20C30B28ED300100C279E4 /* Info.plist */,
-				4D20C30328ED300000C279E4 /* WeatherApp.xcdatamodeld */,
 				4D20C31628ED395200C279E4 /* Helpers */,
 				4D20C31528ED394900C279E4 /* Models */,
 				4D20C31428ED394300C279E4 /* Views */,
@@ -81,7 +99,9 @@
 		4D20C31328ED393B00C279E4 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				4D20C2FE28ED300000C279E4 /* ViewController.swift */,
+				4D20C2FE28ED300000C279E4 /* MainViewController.swift */,
+				4D20C31B28EE721F00C279E4 /* LocationListViewController.swift */,
+				4D20C31F28EE725E00C279E4 /* SettingViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -90,6 +110,8 @@
 			isa = PBXGroup;
 			children = (
 				4D20C30028ED300000C279E4 /* Main.storyboard */,
+				4D7C84BF28EE885A00FD4B0C /* LocationListCell.swift */,
+				4D7C84C128EE8B0D00FD4B0C /* SettingCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -97,6 +119,10 @@
 		4D20C31528ED394900C279E4 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				4D7C84DF28EE98B600FD4B0C /* SavedLocationData+CoreDataClass.swift */,
+				4D7C84E028EE98B600FD4B0C /* SavedLocationData+CoreDataProperties.swift */,
+				4D7C84C328EE8EB000FD4B0C /* CoreDataManager.swift */,
+				4D7C84D528EE95F900FD4B0C /* WeatherManager.swift */,
 				4D20C31728ED3BB100C279E4 /* WeatherModel.swift */,
 				4D20C31928ED3C4B00C279E4 /* WeatherNetworkManager.swift */,
 			);
@@ -127,6 +153,9 @@
 			dependencies = (
 			);
 			name = WeatherApp;
+			packageProductDependencies = (
+				4D7C84BD28EE82D200FD4B0C /* SideMenu */,
+			);
 			productName = WeatherApp;
 			productReference = 4D20C2F728ED300000C279E4 /* WeatherApp.app */;
 			productType = "com.apple.product-type.application";
@@ -155,6 +184,9 @@
 				Base,
 			);
 			mainGroup = 4D20C2EE28ED300000C279E4;
+			packageReferences = (
+				4D7C84BC28EE82D200FD4B0C /* XCRemoteSwiftPackageReference "SideMenu" */,
+			);
 			productRefGroup = 4D20C2F828ED300000C279E4 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -183,11 +215,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				4D20C31228ED382A00C279E4 /* Constants.swift in Sources */,
-				4D20C30528ED300000C279E4 /* WeatherApp.xcdatamodeld in Sources */,
-				4D20C2FF28ED300000C279E4 /* ViewController.swift in Sources */,
+				4D20C30528ED300000C279E4 /* SavedLocationData.xcdatamodeld in Sources */,
+				4D20C2FF28ED300000C279E4 /* MainViewController.swift in Sources */,
 				4D20C2FB28ED300000C279E4 /* AppDelegate.swift in Sources */,
+				4D7C84C228EE8B0D00FD4B0C /* SettingCell.swift in Sources */,
 				4D20C31828ED3BB100C279E4 /* WeatherModel.swift in Sources */,
+				4D7C84E128EE98B600FD4B0C /* SavedLocationData+CoreDataClass.swift in Sources */,
+				4D7C84C428EE8EB000FD4B0C /* CoreDataManager.swift in Sources */,
+				4D20C32028EE725E00C279E4 /* SettingViewController.swift in Sources */,
+				4D7C84E228EE98B600FD4B0C /* SavedLocationData+CoreDataProperties.swift in Sources */,
+				4D7C84C028EE885A00FD4B0C /* LocationListCell.swift in Sources */,
 				4D20C2FD28ED300000C279E4 /* SceneDelegate.swift in Sources */,
+				4D7C84D628EE95F900FD4B0C /* WeatherManager.swift in Sources */,
+				4D20C31C28EE721F00C279E4 /* LocationListViewController.swift in Sources */,
 				4D20C31A28ED3C4B00C279E4 /* WeatherNetworkManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -407,14 +447,33 @@
 		};
 /* End XCConfigurationList section */
 
+/* Begin XCRemoteSwiftPackageReference section */
+		4D7C84BC28EE82D200FD4B0C /* XCRemoteSwiftPackageReference "SideMenu" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/jonkykong/SideMenu.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		4D7C84BD28EE82D200FD4B0C /* SideMenu */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4D7C84BC28EE82D200FD4B0C /* XCRemoteSwiftPackageReference "SideMenu" */;
+			productName = SideMenu;
+		};
+/* End XCSwiftPackageProductDependency section */
+
 /* Begin XCVersionGroup section */
-		4D20C30328ED300000C279E4 /* WeatherApp.xcdatamodeld */ = {
+		4D20C30328ED300000C279E4 /* SavedLocationData.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
 				4D20C30428ED300000C279E4 /* WeatherApp.xcdatamodel */,
 			);
 			currentVersion = 4D20C30428ED300000C279E4 /* WeatherApp.xcdatamodel */;
-			path = WeatherApp.xcdatamodeld;
+			path = SavedLocationData.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
