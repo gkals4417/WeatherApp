@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreLocation
 
 class LocationListViewController: UIViewController {
 
@@ -25,11 +26,14 @@ class LocationListViewController: UIViewController {
 
 extension LocationListViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.weatherManager.getLocationDatasFromCoreData().count
+        return weatherManager.cityNameSavedArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = locationTableView.dequeueReusableCell(withIdentifier: "toLocationListVC", for: indexPath) as! LocationListCell
+        let cell = locationTableView.dequeueReusableCell(withIdentifier: "LocationListCell", for: indexPath) as! LocationListCell
+        cell.textLabel?.text = weatherManager.cityNameSavedArray[indexPath.row]
+        
+        return cell
     }
     
     

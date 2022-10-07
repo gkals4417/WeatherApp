@@ -16,15 +16,15 @@ class CoreDataManager {
     
     lazy var context = appDelegate?.persistentContainer.viewContext
     
-    let modelName: String = "WeatherApp"
+    let modelName: String = "SavedLocationData"
     
     // MARK: - CREATE
     
-    func saveLocation(with location: String, privacyLocation: Bool, units: String, completion: @escaping () -> Void){
+    func saveLocation(with location: Welcome, privacyLocation: Bool, units: String, completion: @escaping () -> Void){
         if let context = context {
             if let entity = NSEntityDescription.entity(forEntityName: self.modelName, in: context){
                 if let locationSaved = NSManagedObject(entity: entity, insertInto: context) as? SavedLocationData {
-                    locationSaved.location = location
+                    locationSaved.location = location.name
                     locationSaved.privacyLocation = privacyLocation
                     locationSaved.units = units
                     

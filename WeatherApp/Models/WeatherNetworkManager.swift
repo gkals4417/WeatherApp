@@ -6,6 +6,8 @@
 //
 
 import Foundation
+import CoreLocation
+
 
 enum NetworkError: Error {
     case weatherNetworkError
@@ -22,9 +24,9 @@ struct WeatherNetworkManager {
     
     // MARK: - Fetch Methods
     
-    func fetchWeather(latitude: Double, longitude: Double, completion: @escaping weatherNetworkCompletion){
-        let urlString = "\(APIconstants.openWeatherURL)?lat=\(latitude)&lon=\(longitude)&units=metric&appid=\(APIconstants.myApiKey)"
-        
+    func fetchWeather(latitude: CLLocationDegrees, longitude: CLLocationDegrees, completion: @escaping weatherNetworkCompletion){
+        let urlString = "\(APIconstants.openWeatherURL)?appid=\(APIconstants.myApiKey)&lat=\(latitude)&lon=\(longitude)&units=metric&"
+        print(urlString)
         getWeather(urlString: urlString) { result in
             completion(result)
         }
@@ -81,7 +83,7 @@ struct WeatherNetworkManager {
             print(data)
             return data
         } catch {
-            print(error.localizedDescription)
+            print(error)
             return nil
         }
     }

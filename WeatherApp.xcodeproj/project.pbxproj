@@ -26,6 +26,7 @@
 		4D7C84D628EE95F900FD4B0C /* WeatherManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7C84D528EE95F900FD4B0C /* WeatherManager.swift */; };
 		4D7C84E128EE98B600FD4B0C /* SavedLocationData+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7C84DF28EE98B600FD4B0C /* SavedLocationData+CoreDataClass.swift */; };
 		4D7C84E228EE98B600FD4B0C /* SavedLocationData+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7C84E028EE98B600FD4B0C /* SavedLocationData+CoreDataProperties.swift */; };
+		4D7C84E428EEB70900FD4B0C /* WeatherCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7C84E328EEB70800FD4B0C /* WeatherCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +50,7 @@
 		4D7C84D528EE95F900FD4B0C /* WeatherManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherManager.swift; sourceTree = "<group>"; };
 		4D7C84DF28EE98B600FD4B0C /* SavedLocationData+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SavedLocationData+CoreDataClass.swift"; sourceTree = "<group>"; };
 		4D7C84E028EE98B600FD4B0C /* SavedLocationData+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SavedLocationData+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		4D7C84E328EEB70800FD4B0C /* WeatherCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +114,7 @@
 				4D20C30028ED300000C279E4 /* Main.storyboard */,
 				4D7C84BF28EE885A00FD4B0C /* LocationListCell.swift */,
 				4D7C84C128EE8B0D00FD4B0C /* SettingCell.swift */,
+				4D7C84E328EEB70800FD4B0C /* WeatherCollectionViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -215,6 +218,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4D20C31228ED382A00C279E4 /* Constants.swift in Sources */,
+				4D7C84E428EEB70900FD4B0C /* WeatherCollectionViewCell.swift in Sources */,
 				4D20C30528ED300000C279E4 /* SavedLocationData.xcdatamodeld in Sources */,
 				4D20C2FF28ED300000C279E4 /* MainViewController.swift in Sources */,
 				4D20C2FB28ED300000C279E4 /* AppDelegate.swift in Sources */,
