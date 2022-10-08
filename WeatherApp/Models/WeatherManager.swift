@@ -9,23 +9,25 @@ import UIKit
 import CoreData
 import CoreLocation
 
+
+
 class WeatherManager{
     static let shared = WeatherManager()
     private init(){
         fetchLocationFromCoreData {
-            self.cityNameSavedArray = self.locationSavedArray.map({ result in
-                result.location ?? ""
-            })
-            print("Initial cityNameSavedArray = \(self.cityNameSavedArray)")
-            print("Set")
+//            self.cityNameSavedArray = self.locationSavedArray.map({ result in
+//                result.location ?? ""
+//            })
+//            print("Initial cityNameSavedArray = \(self.cityNameSavedArray)")
+            print("Fetch Location from CoreData.")
         }
     }
     
     private let networkManager = WeatherNetworkManager.shared
     private let coreDataManager = CoreDataManager.shared
     var locationSavedArray: [SavedLocationData] = []
-    var cityNameSavedArray: [String] = []
-    var weatherDatasArray: [Welcome]? {
+    //var cityNameSavedArray: [String] = []
+    var weatherDatasArray: [Welcome] = [] {
         didSet {
             print("weatherDatasArray Set")
         }
@@ -36,7 +38,9 @@ class WeatherManager{
         }
     }
     
-    // MARK: - API
+    var indexPathForLocationList: Int?
+    
+    // MARK: - API Methods
     
 //    func initialFetchDatasFromAPI(lat: CLLocationDegrees, lon: CLLocationDegrees){
 //        fetchDatasFromAPI(lat: lat, lon: lon) {
@@ -56,12 +60,13 @@ class WeatherManager{
             switch result {
             case .success(let successData):
                 self.weatherDatas = successData
-                self.weatherDatasArray?.append(successData)
+                self.weatherDatasArray.insert(successData, at: self.weatherDatasArray.endIndex)
 //                if !self.cityNameSavedArray.contains(self.weatherDatas!.name){
 //                    self.cityNameSavedArray.append(self.weatherDatas!.name)
 //                }
 //
-                print("City Name Saved Array : \(self.cityNameSavedArray)")
+                print("WeatherDatasArray : \(self.weatherDatasArray)")
+                //print("City Name Saved Array : \(self.cityNameSavedArray)")
                 completion()
             case .failure(let error):
                 print(error)
@@ -70,11 +75,35 @@ class WeatherManager{
         }
     }
     
+    func fetchDatasCityNameFromAPI(cityName: String, completion: @escaping () -> Void){
+        getDatasCityNameFromAPI(cityName: cityName) {
+            completion()
+        }
+    }
     
-    // MARK: - CoreData
+    private func getDatasCityNameFromAPI(cityName: String, completion: @escaping () -> Void){
+        networkManager.fetchWeatherWithCityName(cityName: cityName) { result in
+            switch result {
+            case .success(let successData):
+                self.weatherDatas = successData
+                self.weatherDatasArray.insert(successData, at: self.weatherDatasArray.endIndex)
+//                if !self.cityNameSavedArray.contains(self.weatherDatas!.name){
+//                    self.cityNameSavedArray.append(self.weatherDatas!.name)
+//                }
+//
+                print("WeatherDatasArray : \(self.weatherDatasArray)")
+                //print("City Name Saved Array : \(self.cityNameSavedArray)")
+                completion()
+            case .failure(let error):
+                print(error)
+                completion()
+            }
+        }
+    }
+    // MARK: - CoreData Methods
   
     func setupBasicFromAPI(completion: @escaping () -> Void){
-        getDatasFromAPI(lat: 40, lon: 120) {
+        getDatasFromAPI(lat: 37, lon: 127) {
             completion()
         }
     }
@@ -83,10 +112,6 @@ class WeatherManager{
     //READ
     private func fetchLocationFromCoreData(completion: @escaping () -> Void){
         locationSavedArray = coreDataManager.getLocationSavedArrayFromCoreData()
-        
-//        cityNameSavedArray = locationSavedArray.map({ result in
-//            result.location ?? ""
-//        })
         completion()
     }
     

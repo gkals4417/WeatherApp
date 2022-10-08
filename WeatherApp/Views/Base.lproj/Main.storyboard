@@ -94,7 +94,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceHorizontal="YES" pagingEnabled="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="w7K-aE-ICj">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" alwaysBounceHorizontal="YES" pagingEnabled="YES" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="w7K-aE-ICj">
                                 <rect key="frame" x="0.0" y="91" width="390" height="670"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="5KS-YN-dAQ">
@@ -121,7 +121,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tny-Jg-wAd">
-                                                            <rect key="frame" x="0.0" y="132.66666666666663" width="377" height="119"/>
+                                                            <rect key="frame" x="0.0" y="132.66666666666666" width="377" height="119"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -180,7 +180,7 @@
                                 <segue destination="wbJ-ei-ir1" kind="show" id="ENM-Bf-g92"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="5Kj-FU-1F6">
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="location" catalog="system" id="5Kj-FU-1F6">
                             <connections>
                                 <action selector="addButtonTapped:" destination="DDb-0b-dhx" id="m5r-ek-5Nn"/>
                             </connections>
@@ -267,6 +267,7 @@
     <resources>
         <image name="gear" catalog="system" width="128" height="122"/>
         <image name="line.3.horizontal" catalog="system" width="128" height="65"/>
+        <image name="location" catalog="system" width="32" height="32"/>
         <image name="sun.min" catalog="system" width="128" height="123"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

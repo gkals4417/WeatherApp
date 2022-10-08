@@ -14,7 +14,7 @@ class WeatherCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var highTemperatureLabel: UILabel!
     @IBOutlet weak var lowTemperatureLabel: UILabel!
     
-    var datas: SavedLocationData?{
+    var datas: Welcome?{
         didSet {
             configure()
         }

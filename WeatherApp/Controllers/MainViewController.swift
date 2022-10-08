@@ -7,19 +7,20 @@
 
 import UIKit
 import CoreLocation
+import SideMenu
 
 
 class MainViewController: UIViewController {
-
+    
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var addButton: UIBarButtonItem!
     
     let weatherManager = WeatherManager.shared
     let locationManager = CLLocationManager()
+    
     var lon: CLLocationDegrees = 0
     var lat: CLLocationDegrees = 0
-    var tempWeatherData: Welcome?
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.dataSource = self
@@ -30,6 +31,9 @@ class MainViewController: UIViewController {
         
         setupBasicData()
     }
+    
+
+    // MARK: - Set Basic Data (Initial Setting)
     
     func setupBasicData(){
         weatherManager.fetchDatasFromAPI(lat: 37, lon: 130) {
@@ -43,30 +47,36 @@ class MainViewController: UIViewController {
         }
     }
     
+    // MARK: - @IBAction Methods
+
     @IBAction func addButtonTapped(_ sender: UIBarButtonItem) {
         weatherManager.fetchDatasFromAPI(lat: lat, lon: lon) {
-            self.weatherManager.cityNameSavedArray.append(self.weatherManager.weatherDatas!.name)
+//              self.weatherManager.weatherDatasArray.append(self.weatherManager.weatherDatas!)
             DispatchQueue.main.async {
                 self.collectionView.reloadData()
             }
         }
-        
     }
-    
 }
 
+
+// MARK: - Extension : CollectionView DataSource & Delegate
+
 extension MainViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        return weatherManager.cityNameSavedArray.count
+        return weatherManager.weatherDatasArray.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MainWeatherCollection", for: indexPath) as! WeatherCollectionViewCell
         
-        let welcomeData = weatherManager.weatherDatas
+        if weatherManager.weatherDatasArray.count > indexPath.row {
+            let list = weatherManager.weatherDatasArray[indexPath.row]
+            cell.datas = list
+        }
         
-        cell.datas = welcomeData
         return cell
     }
     
@@ -89,6 +99,9 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
     
 }
 
+
+// MARK: - Extension : CLLocationManagerDelegate
+
 extension MainViewController: CLLocationManagerDelegate{
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let location = locations.last else {return}
@@ -101,3 +114,13 @@ extension MainViewController: CLLocationManagerDelegate{
         print(error)
     }
 }
+
+// MARK: - Extension : SideMenuNavigationControllerDelegate
+
+extension MainViewController: SideMenuNavigationControllerDelegate {
+    func sideMenuDidDisappear(menu: SideMenuNavigationController, animated: Bool) {
+        collectionView.reloadData()
+    }
+    
+}
+
