@@ -22,7 +22,6 @@ class SettingViewController: UIViewController, MFMailComposeViewControllerDelega
         super.viewDidLoad()
         settingTableView.dataSource = self
         settingTableView.delegate = self
-        
         locationManager.delegate = self
         locationAuthCheck()
     }
@@ -32,6 +31,17 @@ class SettingViewController: UIViewController, MFMailComposeViewControllerDelega
 // MARK: - Extensioin : TableView DataSource & Delegate
 
 extension SettingViewController: UITableViewDataSource, UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        guard let header = view as? UITableViewHeaderFooterView else {return}
+        header.textLabel?.font = UIFont.boldSystemFont(ofSize: 30)
+        header.textLabel?.frame = header.bounds
+    }
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        
+        return "Setting"
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return settingArray.count
     }
@@ -39,6 +49,8 @@ extension SettingViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = settingTableView.dequeueReusableCell(withIdentifier: "SettingCell", for: indexPath) as! SettingCell
         cell.textLabel?.text = settingArray[indexPath.row]
+        cell.selectionStyle = .default
+        
         return cell
     }
     

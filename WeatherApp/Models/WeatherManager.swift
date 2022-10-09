@@ -19,7 +19,7 @@ class WeatherManager{
 //                result.location ?? ""
 //            })
 //            print("Initial cityNameSavedArray = \(self.cityNameSavedArray)")
-            print(self.locationSavedArray)
+            print("Initial CoreData Array : \(self.locationSavedArray)")
             print("Fetch Location from CoreData.")
         }
     }
@@ -59,7 +59,7 @@ class WeatherManager{
             switch result {
             case .success(let successData):
                 self.weatherDatas = successData
-                self.weatherDatasArray.insert(successData, at: self.weatherDatasArray.endIndex)
+                self.weatherDatasArray.append(successData)
 //                if !self.cityNameSavedArray.contains(self.weatherDatas!.name){
 //                    self.cityNameSavedArray.append(self.weatherDatas!.name)
 //                }
@@ -85,7 +85,7 @@ class WeatherManager{
             switch result {
             case .success(let successData):
                 self.weatherDatas = successData
-                self.weatherDatasArray.insert(successData, at: self.weatherDatasArray.endIndex)
+                self.weatherDatasArray.append(successData)
 //                if !self.cityNameSavedArray.contains(self.weatherDatas!.name){
 //                    self.cityNameSavedArray.append(self.weatherDatas!.name)
 //                }
@@ -121,6 +121,20 @@ class WeatherManager{
             self.fetchLocationFromCoreData {
                 completion()
             }
+        }
+    }
+    
+    func deleteLocation(with location: Welcome, completion: @escaping () -> Void){
+        let locationSaved = locationSavedArray.filter { $0.location == location.name
+            
+        }
+        
+        if let targetLocationSaved = locationSaved.first{
+            self.deleteLocationFromCoreData(with: targetLocationSaved) {
+                completion()
+            }
+        } else {
+            completion()
         }
     }
     

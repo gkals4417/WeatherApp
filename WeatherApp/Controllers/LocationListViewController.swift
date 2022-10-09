@@ -20,7 +20,6 @@ class LocationListViewController: UIViewController {
     var lat: CLLocationDegrees = 0
     var lon: CLLocationDegrees = 0
 
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         locationTableView.dataSource = self
@@ -45,8 +44,40 @@ extension LocationListViewController: UITableViewDataSource, UITableViewDelegate
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = locationTableView.dequeueReusableCell(withIdentifier: "LocationListCell", for: indexPath) as! LocationListCell
         cell.textLabel?.text = weatherManager.weatherDatasArray[indexPath.row].name
-        cell.selectionStyle = .none
+        //cell.selectionStyle = .none
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "toDetailVC", sender: indexPath)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toDetailVC" {
+            let detailVC = segue.destination as! DetailViewController
+            let index = sender as! IndexPath
+//            if weatherManager.weatherDatasArray.count > index.row {
+//                let list = weatherManager.weatherDatasArray[index.row]
+//                detailVC.datas = list
+//            }
+            DispatchQueue.main.async {
+                detailVC.datas = self.weatherManager.weatherDatasArray[index.row]
+            }
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            weatherManager.weatherDatasArray.remove(at: indexPath.row)
+            weatherManager.deleteLocation(with: weatherManager.weatherDatasArray[indexPath.row]) {
+                print("DELETE")
+                print("After DELETE WeatherData Array : \(self.weatherManager.weatherDatasArray)")
+                print("After DELETE CoreData Array : \(self.weatherManager.locationSavedArray)")
+            }
+            locationTableView.deleteRows(at: [indexPath], with: .fade)
+        } else if editingStyle == .insert {
+            
+        }
     }
 }
 
@@ -74,12 +105,13 @@ extension LocationListViewController: UISearchBarDelegate{
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let city = locationSearchBar.text else {return}
         weatherManager.fetchDatasCityNameFromAPI(cityName: city) {
-            
             DispatchQueue.main.async {
-                self.locationTableView.reloadData()
                 self.weatherManager.createLocationData(with: self.weatherManager.weatherDatasArray.last!) {
                     print("weatherDataArray saved in locationListViewController")
                 }
+                
+                self.locationTableView.reloadData()
+                
                 self.dismiss(animated: true)
                 
             }

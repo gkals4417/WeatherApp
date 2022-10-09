@@ -81,9 +81,7 @@ class CoreDataManager {
             do {
                 if let fetchedLocationList = try context.fetch(request) as? [SavedLocationData]{
                     if var targetLocation = fetchedLocationList.first{
-                        
                         targetLocation = location
-                        
                         if context.hasChanges{
                             do {
                                 try context.save()
@@ -110,14 +108,14 @@ class CoreDataManager {
     // MARK: - DELETE
     
     func deleteLocation(with location: SavedLocationData, completion: @escaping () -> Void){
-        guard let savedDate = location.savedDate else {
+        guard let locationData = location.location else {
             completion()
             return
         }
         
         if let context = context {
             let request = NSFetchRequest<NSManagedObject>(entityName: self.modelName)
-            request.predicate = NSPredicate(format: "savedDate = %@", savedDate as CVarArg)
+            request.predicate = NSPredicate(format: "location CONTAINS[cd] %@", locationData)
             
             do {
                 if let fetchedLocationList = try context.fetch(request) as? [SavedLocationData]{

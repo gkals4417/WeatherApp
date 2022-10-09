@@ -26,6 +26,7 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         collectionView.dataSource = self
         collectionView.delegate = self
+        
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
         locationManager.requestLocation()
@@ -52,7 +53,7 @@ class MainViewController: UIViewController {
             
             weatherManager.locationSavedArray.forEach { result in
                 locationArray.append(result.location ?? "")
-                print(locationArray)
+                print("Location Array : \(locationArray)")
             }
             for location in locationArray {
                 weatherManager.fetchDatasCityNameFromAPI(cityName: location) {
@@ -118,22 +119,22 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
     }
     
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "toDetailVC", sender: indexPath)
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "toDetailVC"{
-            let detailVC = segue.destination as! DetailViewController
-            let index = sender as! IndexPath
-            DispatchQueue.main.async {
-                detailVC.weatherDescription.text = "\(self.weatherManager.weatherDatasArray[index.row].weather[0].weatherDescription)"
-                detailVC.feelsLike.text = "\(self.weatherManager.weatherDatasArray[index.row].main.feelsLike)"
-                detailVC.pressure.text = "\(self.weatherManager.weatherDatasArray[index.row].main.pressure)"
-                detailVC.windSpeed.text = "\(self.weatherManager.weatherDatasArray[index.row].wind.speed)"
-            }
-        }
-    }
+//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+//        performSegue(withIdentifier: "toDetailVC", sender: indexPath)
+//    }
+//    
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if segue.identifier == "toDetailVC"{
+//            let detailVC = segue.destination as! DetailViewController
+//            let index = sender as! IndexPath
+//            DispatchQueue.main.async {
+//                detailVC.weatherDescription.text = "날씨 : \(self.weatherManager.weatherDatasArray[index.row].weather[0].weatherDescription)"
+//                detailVC.feelsLike.text = "체감 온도 : \(self.weatherManager.weatherDatasArray[index.row].main.feelsLike)"
+//                detailVC.pressure.text = "기압 : \(self.weatherManager.weatherDatasArray[index.row].main.pressure)"
+//                detailVC.windSpeed.text = "풍속 : \(self.weatherManager.weatherDatasArray[index.row].wind.speed)"
+//            }
+//        }
+//    }
 }
 
 
@@ -159,6 +160,5 @@ extension MainViewController: SideMenuNavigationControllerDelegate {
     func sideMenuDidDisappear(menu: SideMenuNavigationController, animated: Bool) {
         collectionView.reloadData()
     }
-    
 }
 
