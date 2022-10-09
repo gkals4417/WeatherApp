@@ -37,12 +37,28 @@ class MainViewController: UIViewController {
     // MARK: - Set Basic Data (Initial Setting)
     
     func setupBasicData(){
-        weatherManager.fetchDatasFromAPI(lat: 37, lon: 130) {
-            print("Hello")
-            DispatchQueue.main.async {
-                self.collectionView.reloadData()
-                self.weatherManager.createLocationData(with: self.weatherManager.weatherDatas!) {
-                    print("Saved Basic Location")
+        if weatherManager.locationSavedArray.isEmpty {
+            weatherManager.fetchDatasFromAPI(lat: 37, lon: 130) {
+                print("Hello Swift")
+                DispatchQueue.main.async {
+                    self.collectionView.reloadData()
+                    self.weatherManager.createLocationData(with: self.weatherManager.weatherDatas!) {
+                        print("Saved Basic Location")
+                    }
+                }
+            }
+        } else {
+            var locationArray:[String] = []
+            
+            weatherManager.locationSavedArray.forEach { result in
+                locationArray.append(result.location ?? "")
+                print(locationArray)
+            }
+            for location in locationArray {
+                weatherManager.fetchDatasCityNameFromAPI(cityName: location) {
+                    DispatchQueue.main.async {
+                        self.collectionView.reloadData()
+                    }
                 }
             }
         }
@@ -53,8 +69,12 @@ class MainViewController: UIViewController {
     @IBAction func addButtonTapped(_ sender: UIBarButtonItem) {
         weatherManager.fetchDatasFromAPI(lat: lat, lon: lon) {
 //              self.weatherManager.weatherDatasArray.append(self.weatherManager.weatherDatas!)
+            
             DispatchQueue.main.async {
                 self.collectionView.reloadData()
+                self.weatherManager.createLocationData(with: self.weatherManager.weatherDatasArray.last!) {
+                    print("weatherDataArray saved in MainViewController")
+                }
             }
         }
     }
@@ -96,6 +116,8 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
         let cvRect = collectionView.frame
         return CGSize(width: cvRect.width, height: cvRect.height)
     }
+    
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         performSegue(withIdentifier: "toDetailVC", sender: indexPath)
     }
@@ -115,7 +137,7 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
 }
 
 
-// MARK: - Extension : CLLocationManagerDelegate
+// MARK: - Extension : CoreLocation Delegate
 
 extension MainViewController: CLLocationManagerDelegate{
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -129,6 +151,7 @@ extension MainViewController: CLLocationManagerDelegate{
         print(error)
     }
 }
+
 
 // MARK: - Extension : SideMenuNavigationControllerDelegate
 

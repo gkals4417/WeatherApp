@@ -139,12 +139,6 @@ class WeatherManager{
             completion()
         }
     }
-    
-    
-    
-    func checkWhetherSaved(){
-        
-    }
-    
+
     
 }

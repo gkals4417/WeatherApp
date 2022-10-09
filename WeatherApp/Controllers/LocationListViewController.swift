@@ -51,7 +51,7 @@ extension LocationListViewController: UITableViewDataSource, UITableViewDelegate
 }
 
 
-// MARK: - Extension : CLLocationManagerDelegate
+// MARK: - Extension : CoreLocation Delegate
 
 extension LocationListViewController: CLLocationManagerDelegate{
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -74,9 +74,14 @@ extension LocationListViewController: UISearchBarDelegate{
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let city = locationSearchBar.text else {return}
         weatherManager.fetchDatasCityNameFromAPI(cityName: city) {
+            
             DispatchQueue.main.async {
                 self.locationTableView.reloadData()
+                self.weatherManager.createLocationData(with: self.weatherManager.weatherDatasArray.last!) {
+                    print("weatherDataArray saved in locationListViewController")
+                }
                 self.dismiss(animated: true)
+                
             }
         }
         

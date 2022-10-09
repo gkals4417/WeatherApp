@@ -105,8 +105,8 @@
 			children = (
 				4D20C2FE28ED300000C279E4 /* MainViewController.swift */,
 				4D20C31B28EE721F00C279E4 /* LocationListViewController.swift */,
-				4D20C31F28EE725E00C279E4 /* SettingViewController.swift */,
 				4D7C84EF28F2458300FD4B0C /* DetailViewController.swift */,
+				4D20C31F28EE725E00C279E4 /* SettingViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";

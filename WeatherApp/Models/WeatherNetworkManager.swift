@@ -89,7 +89,7 @@ struct WeatherNetworkManager {
     private func parseJSON(_ safeData: Data) -> Welcome? {
         do {
             let data = try JSONDecoder().decode(Welcome.self, from: safeData)
-            print(data)
+            //print(data)
             return data
         } catch {
             print(error)
