@@ -12,6 +12,7 @@ import SideMenu
 
 class MainViewController: UIViewController {
     
+    @IBOutlet weak var conditionImageView: UIImageView!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var addButton: UIBarButtonItem!
     
@@ -65,7 +66,6 @@ class MainViewController: UIViewController {
 extension MainViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
         return weatherManager.weatherDatasArray.count
     }
     
@@ -96,7 +96,22 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
         let cvRect = collectionView.frame
         return CGSize(width: cvRect.width, height: cvRect.height)
     }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "toDetailVC", sender: indexPath)
+    }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toDetailVC"{
+            let detailVC = segue.destination as! DetailViewController
+            let index = sender as! IndexPath
+            DispatchQueue.main.async {
+                detailVC.weatherDescription.text = "\(self.weatherManager.weatherDatasArray[index.row].weather[0].weatherDescription)"
+                detailVC.feelsLike.text = "\(self.weatherManager.weatherDatasArray[index.row].main.feelsLike)"
+                detailVC.pressure.text = "\(self.weatherManager.weatherDatasArray[index.row].main.pressure)"
+                detailVC.windSpeed.text = "\(self.weatherManager.weatherDatasArray[index.row].wind.speed)"
+            }
+        }
+    }
 }
 
 

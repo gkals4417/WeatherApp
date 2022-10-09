@@ -19,6 +19,7 @@ class WeatherManager{
 //                result.location ?? ""
 //            })
 //            print("Initial cityNameSavedArray = \(self.cityNameSavedArray)")
+            print(self.locationSavedArray)
             print("Fetch Location from CoreData.")
         }
     }
@@ -37,8 +38,6 @@ class WeatherManager{
             print("weatherData Set")
         }
     }
-    
-    var indexPathForLocationList: Int?
     
     // MARK: - API Methods
     
