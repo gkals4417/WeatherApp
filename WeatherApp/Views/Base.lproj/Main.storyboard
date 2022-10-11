@@ -2,7 +2,9 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="d4E-14-pWZ">
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -36,7 +38,7 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="5qt-wp-fof">
                                 <rect key="frame" x="0.0" y="47" width="390" height="714"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SettingCell" id="Dtg-ng-LMK" customClass="SettingCell" customModule="WeatherApp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="50" width="390" height="43.666667938232422"/>
@@ -45,6 +47,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="390" height="43.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -99,7 +102,7 @@
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" directionalLockEnabled="YES" alwaysBounceHorizontal="YES" pagingEnabled="YES" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="w7K-aE-ICj">
                                 <rect key="frame" x="0.0" y="91" width="390" height="670"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="5KS-YN-dAQ">
                                     <size key="itemSize" width="392" height="668"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -107,7 +110,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MainWeatherCollection" id="KhS-8c-FKh" customClass="WeatherCollectionViewCell" customModule="WeatherApp" customModuleProvider="target">
+                                    <collectionViewCell clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MainWeatherCollection" id="KhS-8c-FKh" customClass="WeatherCollectionViewCell" customModule="WeatherApp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="1" width="392" height="668"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="qVa-jR-4td">
@@ -115,10 +118,10 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="j0x-CK-VsO">
-                                                    <rect key="frame" x="252" y="28" width="100" height="100"/>
+                                                    <rect key="frame" x="222" y="28" width="150" height="150"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="100" id="5iE-y0-mUY"/>
-                                                        <constraint firstAttribute="width" constant="100" id="zeT-70-MQL"/>
+                                                        <constraint firstAttribute="height" constant="150" id="5iE-y0-mUY"/>
+                                                        <constraint firstAttribute="width" constant="150" id="zeT-70-MQL"/>
                                                     </constraints>
                                                 </imageView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="N3h-iy-VOM">
@@ -161,7 +164,7 @@
                                                 <constraint firstItem="N3h-iy-VOM" firstAttribute="leading" secondItem="qVa-jR-4td" secondAttribute="leading" constant="20" id="JHI-Pk-SRV"/>
                                                 <constraint firstItem="j0x-CK-VsO" firstAttribute="top" secondItem="qVa-jR-4td" secondAttribute="topMargin" constant="20" id="M1W-VZ-GMJ"/>
                                                 <constraint firstAttribute="bottom" secondItem="N3h-iy-VOM" secondAttribute="bottom" constant="40" id="Uan-3t-leE"/>
-                                                <constraint firstAttribute="trailing" secondItem="j0x-CK-VsO" secondAttribute="trailing" constant="40" id="sdO-f6-8xR"/>
+                                                <constraint firstAttribute="trailing" secondItem="j0x-CK-VsO" secondAttribute="trailing" constant="20" id="sdO-f6-8xR"/>
                                             </constraints>
                                         </collectionViewCellContentView>
                                         <size key="customSize" width="392" height="668"/>
@@ -182,11 +185,13 @@
                     </view>
                     <navigationItem key="navigationItem" id="24q-1W-ZiL">
                         <barButtonItem key="leftBarButtonItem" title="Item" image="line.3.horizontal" catalog="system" id="akE-kc-QhQ">
+                            <color key="tintColor" name="blueWhite"/>
                             <connections>
                                 <segue destination="wbJ-ei-ir1" kind="show" id="ENM-Bf-g92"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Item" image="location" catalog="system" id="5Kj-FU-1F6">
+                            <color key="tintColor" name="blueWhite"/>
                             <connections>
                                 <action selector="addButtonTapped:" destination="DDb-0b-dhx" id="m5r-ek-5Nn"/>
                             </connections>
@@ -211,10 +216,12 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="egZ-t0-d36">
                                 <rect key="frame" x="0.0" y="91" width="390" height="670"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <searchBar key="tableHeaderView" contentMode="redraw" id="2O1-Ig-WmI">
+                                <color key="backgroundColor" name="blueWhite"/>
+                                <color key="sectionIndexBackgroundColor" name="blueWhite"/>
+                                <searchBar key="tableHeaderView" clipsSubviews="YES" contentMode="redraw" id="2O1-Ig-WmI">
                                     <rect key="frame" x="0.0" y="0.0" width="390" height="44"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                    <color key="barTintColor" name="blueWhite"/>
                                     <textInputTraits key="textInputTraits"/>
                                     <connections>
                                         <outlet property="delegate" destination="pJu-Mh-2oV" id="bBV-rs-ojL"/>
@@ -228,6 +235,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="390" height="43.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" name="blueWhite"/>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -351,7 +359,7 @@
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="wUA-QS-avx"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" name="blueWhite"/>
                         <constraints>
                             <constraint firstItem="xoI-ye-46v" firstAttribute="top" secondItem="eEE-ZM-JTV" secondAttribute="bottom" constant="40" id="1Oz-Q6-hia"/>
                             <constraint firstItem="eEE-ZM-JTV" firstAttribute="leading" secondItem="wUA-QS-avx" secondAttribute="leading" constant="20" id="9xy-sk-pMJ"/>
@@ -387,6 +395,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="barTintColor" name="blueWhite"/>
+                        <color key="selectedImageTintColor" name="blueWhite"/>
                     </tabBar>
                     <connections>
                         <segue destination="4ry-oF-bge" kind="relationship" relationship="viewControllers" id="XBE-Di-YGa"/>
@@ -403,6 +413,9 @@
         <image name="line.3.horizontal" catalog="system" width="128" height="65"/>
         <image name="location" catalog="system" width="128" height="121"/>
         <image name="sun.min" catalog="system" width="128" height="123"/>
+        <namedColor name="blueWhite">
+            <color red="0.87450980392156863" green="0.96470588235294119" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

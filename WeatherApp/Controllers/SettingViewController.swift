@@ -23,6 +23,13 @@ class SettingViewController: UIViewController, MFMailComposeViewControllerDelega
         settingTableView.dataSource = self
         settingTableView.delegate = self
         locationManager.delegate = self
+        
+        UIGraphicsBeginImageContext(self.view.frame.size)
+            UIImage(named: "background")?.draw(in: self.view.bounds)
+            let image: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+            UIGraphicsEndImageContext()
+            self.view.backgroundColor = UIColor(patternImage: image)
+        
         locationAuthCheck()
     }
 }
@@ -35,6 +42,7 @@ extension SettingViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         guard let header = view as? UITableViewHeaderFooterView else {return}
         header.textLabel?.font = UIFont.boldSystemFont(ofSize: 30)
+        header.textLabel?.textColor = .black
         header.textLabel?.frame = header.bounds
     }
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -49,7 +57,7 @@ extension SettingViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = settingTableView.dequeueReusableCell(withIdentifier: "SettingCell", for: indexPath) as! SettingCell
         cell.textLabel?.text = settingArray[indexPath.row]
-        cell.selectionStyle = .default
+        cell.selectionStyle = .none
         
         return cell
     }

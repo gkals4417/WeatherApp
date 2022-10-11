@@ -27,6 +27,7 @@ class CoreDataManager {
                     locationSaved.location = location.name
                     locationSaved.privacyLocation = privacyLocation
                     locationSaved.units = units
+                    locationSaved.savedDate = Date()
                     
                     if context.hasChanges {
                         do {

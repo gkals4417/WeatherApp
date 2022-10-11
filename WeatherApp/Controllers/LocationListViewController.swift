@@ -30,6 +30,9 @@ class LocationListViewController: UIViewController {
         
         locationSearchBar.delegate = self
         locationSearchBar.placeholder = "영어로 입력하세요."
+        
+        view.backgroundColor = UIColor(named: "blueWhite")
+        
     }
 }
 
@@ -113,10 +116,10 @@ extension LocationListViewController: UISearchBarDelegate{
                 self.locationTableView.reloadData()
                 
                 self.dismiss(animated: true)
-                
             }
         }
-        
     }
+    
+    
 }
 

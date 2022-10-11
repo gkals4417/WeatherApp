@@ -31,6 +31,12 @@ class MainViewController: UIViewController {
         locationManager.requestWhenInUseAuthorization()
         locationManager.requestLocation()
         
+        UIGraphicsBeginImageContext(self.view.frame.size)
+            UIImage(named: "background")?.draw(in: self.view.bounds)
+            let image: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+            UIGraphicsEndImageContext()
+            self.view.backgroundColor = UIColor(patternImage: image)
+        
         setupBasicData()
     }
     
@@ -45,17 +51,21 @@ class MainViewController: UIViewController {
                     self.collectionView.reloadData()
                     self.weatherManager.createLocationData(with: self.weatherManager.weatherDatas!) {
                         print("Saved Basic Location")
+                        print("After Basic Location Saved : \(self.weatherManager.locationSavedArray)")
                     }
                 }
             }
         } else {
             var locationArray:[String] = []
+            var removeDuplicateArray: [String] = []
             
             weatherManager.locationSavedArray.forEach { result in
                 locationArray.append(result.location ?? "")
                 print("Location Array : \(locationArray)")
+                removeDuplicateArray = Array(Set(locationArray))
+                print("flatMapped Location Array : \(removeDuplicateArray)")
             }
-            for location in locationArray {
+            for location in removeDuplicateArray {
                 weatherManager.fetchDatasCityNameFromAPI(cityName: location) {
                     DispatchQueue.main.async {
                         self.collectionView.reloadData()
@@ -117,24 +127,7 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
         let cvRect = collectionView.frame
         return CGSize(width: cvRect.width, height: cvRect.height)
     }
-    
-    
-//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        performSegue(withIdentifier: "toDetailVC", sender: indexPath)
-//    }
-//    
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier == "toDetailVC"{
-//            let detailVC = segue.destination as! DetailViewController
-//            let index = sender as! IndexPath
-//            DispatchQueue.main.async {
-//                detailVC.weatherDescription.text = "날씨 : \(self.weatherManager.weatherDatasArray[index.row].weather[0].weatherDescription)"
-//                detailVC.feelsLike.text = "체감 온도 : \(self.weatherManager.weatherDatasArray[index.row].main.feelsLike)"
-//                detailVC.pressure.text = "기압 : \(self.weatherManager.weatherDatasArray[index.row].main.pressure)"
-//                detailVC.windSpeed.text = "풍속 : \(self.weatherManager.weatherDatasArray[index.row].wind.speed)"
-//            }
-//        }
-//    }
+
 }
 
 
