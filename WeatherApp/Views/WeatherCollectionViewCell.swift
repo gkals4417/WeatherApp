@@ -25,11 +25,11 @@ class WeatherCollectionViewCell: UICollectionViewCell {
     
     private func configureCell(){
         guard let datas = datas else {return}
-        citynameLabel.text = "지역 : \(datas.name)"
-        humidityLabel.text = "습도 : \(String(describing: datas.main.humidity))"
-        temperatureLabel.text = "기온 : \(String(describing: datas.main.temp))"
-        highTemperatureLabel.text = "최고 기온 : \(String(describing: datas.main.tempMax))"
-        lowTemperatureLabel.text = "최저 기온 : \(String(describing: datas.main.tempMin))"
+        citynameLabel.text = "\(datas.name)"
+        humidityLabel.text = "\(String(describing: datas.main.humidity)) %"
+        temperatureLabel.text = "\(String(format: "%.1f", datas.main.temp)) ℃"
+        highTemperatureLabel.text = "\(String(format: "%.1f", datas.main.tempMax)) ℃"
+        lowTemperatureLabel.text = "\(String(format: "%.1f", datas.main.tempMin)) ℃"
         
         switch datas.weather[0].id{
         case 200...232:

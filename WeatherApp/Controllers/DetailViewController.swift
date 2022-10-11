@@ -36,14 +36,14 @@ class DetailViewController: UIViewController {
     
     private func configureCell(){
         guard let datas = datas else {return}
-        locationNameLabel.text = "지역 : \(datas.name)"
-        humidityLabel.text = "습도 : \(String(describing: datas.main.humidity))"
-        temperatureLabel.text = "기온 : \(String(describing: datas.main.temp))"
-        maxTempLabel.text = "최고 기온 : \(String(describing: datas.main.tempMax))"
-        minTempLabel.text = "최저 기온 : \(String(describing: datas.main.tempMin))"
-        feelslikeLabel.text = "체감 온도 : \(String(describing: datas.main.feelsLike))"
-        pressureLabel.text = "기압 : \(String(describing: datas.main.pressure))"
-        windSpeedLabel.text = "풍속 : \(String(describing: datas.wind.speed))"
+        locationNameLabel.text = "\(datas.name)"
+        humidityLabel.text = "습도 : \(String(describing: datas.main.humidity)) %"
+        temperatureLabel.text = "기온 : \(String(format: "%.1f", datas.main.temp)) ℃"
+        maxTempLabel.text = "최고 기온 : \(String(format: "%.1f", datas.main.tempMax)) ℃"
+        minTempLabel.text = "최저 기온 : \(String(format: "%.1f", datas.main.tempMin)) ℃"
+        feelslikeLabel.text = "체감 온도 : \(String(format: "%.1f", datas.main.feelsLike)) ℃"
+        pressureLabel.text = "기압 : \(String(describing: datas.main.pressure)) hPa"
+        windSpeedLabel.text = "풍속 : \(String(describing: datas.wind.speed)) m/s"
         
         switch datas.weather[0].id{
         case 200...232:
