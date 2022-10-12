@@ -85,6 +85,7 @@ extension LocationListViewController: UITableViewDataSource, UITableViewDelegate
             
         }
     }
+
 }
 
 

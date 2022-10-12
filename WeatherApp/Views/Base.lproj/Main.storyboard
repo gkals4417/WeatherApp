@@ -73,10 +73,10 @@
         <!--Side Menu Navigation Controller-->
         <scene sceneID="rze-Er-Kk5">
             <objects>
-                <navigationController id="wbJ-ei-ir1" customClass="SideMenuNavigationController" customModule="SideMenu" sceneMemberID="viewController">
+                <navigationController navigationBarHidden="YES" id="wbJ-ei-ir1" customClass="SideMenuNavigationController" customModule="SideMenu" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="LYP-I5-PeZ"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="j34-C2-JTg">
-                        <rect key="frame" x="0.0" y="47" width="390" height="44"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="j34-C2-JTg">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <userDefinedRuntimeAttributes>
@@ -250,7 +250,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="egZ-t0-d36">
-                                <rect key="frame" x="0.0" y="91" width="390" height="670"/>
+                                <rect key="frame" x="0.0" y="47" width="390" height="714"/>
                                 <color key="backgroundColor" name="blueWhite"/>
                                 <color key="sectionIndexBackgroundColor" name="blueWhite"/>
                                 <searchBar key="tableHeaderView" clipsSubviews="YES" contentMode="redraw" id="2O1-Ig-WmI">
