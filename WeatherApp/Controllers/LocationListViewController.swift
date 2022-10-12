@@ -20,6 +20,8 @@ class LocationListViewController: UIViewController {
     var lat: CLLocationDegrees = 0
     var lon: CLLocationDegrees = 0
 
+    var delegate: ScrollDelegate?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         locationTableView.dataSource = self
@@ -114,8 +116,8 @@ extension LocationListViewController: UISearchBarDelegate{
 //                }
                 
                 self.locationTableView.reloadData()
-                
                 self.dismiss(animated: true)
+                self.delegate?.views()
             }
         }
     }

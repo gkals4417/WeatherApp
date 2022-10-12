@@ -295,7 +295,7 @@
             </objects>
             <point key="canvasLocation" x="8871" y="-1248"/>
         </scene>
-        <!--Detail View Controller-->
+        <!--상세 정보-->
         <scene sceneID="TEk-Te-cIk">
             <objects>
                 <viewController id="agL-k2-5dK" customClass="DetailViewController" customModule="WeatherApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -311,8 +311,8 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="35" id="QtF-C9-QQX"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
+                                        <color key="textColor" name="darkNavi"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="yqI-3d-VFt">
@@ -404,7 +404,7 @@
                             <constraint firstItem="wUA-QS-avx" firstAttribute="trailing" secondItem="eEE-ZM-JTV" secondAttribute="trailing" constant="20" id="ddz-re-U1K"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="YbI-qb-hJH"/>
+                    <navigationItem key="navigationItem" title="상세 정보" id="YbI-qb-hJH"/>
                     <connections>
                         <outlet property="conditionImageView" destination="eEE-ZM-JTV" id="yWZ-W0-RDn"/>
                         <outlet property="feelslikeLabel" destination="9NN-Xh-qkh" id="7eN-ME-BbV"/>

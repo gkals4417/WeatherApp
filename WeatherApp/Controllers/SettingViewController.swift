@@ -16,7 +16,7 @@ class SettingViewController: UIViewController, MFMailComposeViewControllerDelega
     let weatherManager = WeatherManager.shared
     var locationManager = CLLocationManager()
     var locationAuthStatus = ""
-    var settingArray:[String] = ["","문의하기", "개인 정보 처리 방침", "개발자 정보"]
+    var settingArray:[String] = ["","문의하기", "개인 정보 처리 방침", "개발자 정보", "오픈 소스"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,7 +42,7 @@ extension SettingViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         guard let header = view as? UITableViewHeaderFooterView else {return}
         header.textLabel?.font = UIFont.boldSystemFont(ofSize: 30)
-        header.textLabel?.textColor = .black
+        header.textLabel?.textColor = UIColor(named: "darkNavi")
         header.textLabel?.frame = header.bounds
     }
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -68,17 +68,25 @@ extension SettingViewController: UITableViewDataSource, UITableViewDelegate {
         } else if indexPath.row == 1 {
             let email = "gkals4417@icloud.com"
             let subject = "문의하기"
+            let mail = MFMailComposeViewController()
+            
             if MFMailComposeViewController.canSendMail(){
-                let mail = MFMailComposeViewController()
                 mail.mailComposeDelegate = self
                 mail.setToRecipients([email])
                 mail.setSubject(subject)
                 present(mail, animated: true)
+            } else {
+                
             }
         } else if indexPath.row == 2 {
             
-        } else {
+        } else if indexPath.row == 3 {
             let alert = UIAlertController(title: "개발자 정보", message: "Made by Pulsar", preferredStyle: .alert)
+            let ok = UIAlertAction(title: "확인", style: .default)
+            alert.addAction(ok)
+            present(alert, animated: true)
+        } else {
+            let alert = UIAlertController(title: "오픈 소스", message: "openweathermap.org", preferredStyle: .alert)
             let ok = UIAlertAction(title: "확인", style: .default)
             alert.addAction(ok)
             present(alert, animated: true)

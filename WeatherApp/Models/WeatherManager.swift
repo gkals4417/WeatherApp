@@ -9,7 +9,9 @@ import UIKit
 import CoreData
 import CoreLocation
 
-
+protocol ScrollDelegate: AnyObject {
+    func views()
+}
 
 class WeatherManager{
     static let shared = WeatherManager()
@@ -59,7 +61,8 @@ class WeatherManager{
             switch result {
             case .success(let successData):
                 self.weatherDatas = successData
-                self.weatherDatasArray.append(successData)
+                //self.weatherDatasArray.append(successData)
+                self.weatherDatasArray.insert(successData, at: 0)
 //                if !self.cityNameSavedArray.contains(self.weatherDatas!.name){
 //                    self.cityNameSavedArray.append(self.weatherDatas!.name)
 //                }
@@ -85,7 +88,8 @@ class WeatherManager{
             switch result {
             case .success(let successData):
                 self.weatherDatas = successData
-                self.weatherDatasArray.append(successData)
+//                self.weatherDatasArray.append(successData)
+                self.weatherDatasArray.insert(successData, at: 0)
 //                if !self.cityNameSavedArray.contains(self.weatherDatas!.name){
 //                    self.cityNameSavedArray.append(self.weatherDatas!.name)
 //                }

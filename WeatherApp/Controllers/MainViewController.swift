@@ -45,7 +45,7 @@ class MainViewController: UIViewController {
     
     func setupBasicData(){
         if weatherManager.locationSavedArray.isEmpty {
-            weatherManager.fetchDatasFromAPI(lat: 37.33, lon: 126.58) {
+            weatherManager.fetchDatasFromAPI(lat: 37.5326, lon: 127.024612) {
                 print("Hello Swift")
                 DispatchQueue.main.async {
                     self.collectionView.reloadData()
@@ -83,9 +83,10 @@ class MainViewController: UIViewController {
             
             DispatchQueue.main.async {
                 self.collectionView.reloadData()
-                self.weatherManager.createLocationData(with: self.weatherManager.weatherDatasArray.last!) {
-                    print("weatherDataArray saved in MainViewController")
-                }
+//                self.weatherManager.createLocationData(with: self.weatherManager.weatherDatasArray.last!) {
+//                    print("weatherDataArray saved in MainViewController")
+//                }
+                self.collectionView.scrollsToTop = true
             }
         }
     }
@@ -158,3 +159,10 @@ extension MainViewController: SideMenuNavigationControllerDelegate {
 //추가를 하거나 tableView에서 제거를 하면, CoreData를 관리하는 함수는 건들지 말고,
 //weatherDataArray에만 추가, 제거를 한 뒤에, 마지막에 SceneDelegate에서 weatherDataArray의 location값을
 //locationSavedArray에 비교해서 저장하는 것으로 변경 예정.
+
+extension MainViewController: ScrollDelegate {
+    func views() {
+        collectionView.scrollsToTop = true
+        collectionView.reloadData()
+    }
+}

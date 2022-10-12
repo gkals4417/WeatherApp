@@ -11,6 +11,7 @@ class DetailViewController: UIViewController {
 
     @IBOutlet weak var conditionImageView: UIImageView!
     @IBOutlet weak var locationNameLabel: UILabel!
+
     @IBOutlet weak var temperatureLabel: UILabel!
     @IBOutlet weak var humidityLabel: UILabel!
     @IBOutlet weak var feelslikeLabel: UILabel!
@@ -30,20 +31,20 @@ class DetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.navigationController?.navigationBar.tintColor = UIColor(named: "darkNavi")
         // Do any additional setup after loading the view.
     }
-    
+
     private func configureCell(){
         guard let datas = datas else {return}
         locationNameLabel.text = "\(datas.name)"
-        humidityLabel.text = "습도 : \(String(describing: datas.main.humidity)) %"
-        temperatureLabel.text = "기온 : \(String(format: "%.1f", datas.main.temp)) ℃"
-        maxTempLabel.text = "최고 기온 : \(String(format: "%.1f", datas.main.tempMax)) ℃"
-        minTempLabel.text = "최저 기온 : \(String(format: "%.1f", datas.main.tempMin)) ℃"
-        feelslikeLabel.text = "체감 온도 : \(String(format: "%.1f", datas.main.feelsLike)) ℃"
-        pressureLabel.text = "기압 : \(String(describing: datas.main.pressure)) hPa"
-        windSpeedLabel.text = "풍속 : \(String(describing: datas.wind.speed)) m/s"
+        humidityLabel.text = "습도 | \(String(describing: datas.main.humidity)) %"
+        temperatureLabel.text = "기온 | \(String(format: "%.1f", datas.main.temp)) ℃"
+        maxTempLabel.text = "최고 기온 | \(String(format: "%.1f", datas.main.tempMax)) ℃"
+        minTempLabel.text = "최저 기온 | \(String(format: "%.1f", datas.main.tempMin)) ℃"
+        feelslikeLabel.text = "체감 온도 | \(String(format: "%.1f", datas.main.feelsLike)) ℃"
+        pressureLabel.text = "기압 | \(String(describing: datas.main.pressure)) hPa"
+        windSpeedLabel.text = "풍속 | \(String(describing: datas.wind.speed)) m/s"
         
         switch datas.weather[0].id{
         case 200...232:
