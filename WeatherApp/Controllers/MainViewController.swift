@@ -82,6 +82,7 @@ class MainViewController: UIViewController {
 //              self.weatherManager.weatherDatasArray.append(self.weatherManager.weatherDatas!)
             
             DispatchQueue.main.async {
+                self.collectionView.scrollsToTop = true
                 self.collectionView.reloadData()
 //                self.weatherManager.createLocationData(with: self.weatherManager.weatherDatasArray.last!) {
 //                    print("weatherDataArray saved in MainViewController")
