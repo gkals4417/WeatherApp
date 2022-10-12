@@ -82,7 +82,6 @@ class MainViewController: UIViewController {
 //              self.weatherManager.weatherDatasArray.append(self.weatherManager.weatherDatas!)
             
             DispatchQueue.main.async {
-                self.collectionView.scrollsToTop = true
                 self.collectionView.reloadData()
 //                self.weatherManager.createLocationData(with: self.weatherManager.weatherDatasArray.last!) {
 //                    print("weatherDataArray saved in MainViewController")
@@ -157,9 +156,8 @@ extension MainViewController: SideMenuNavigationControllerDelegate {
     }
 }
 
-//추가를 하거나 tableView에서 제거를 하면, CoreData를 관리하는 함수는 건들지 말고,
-//weatherDataArray에만 추가, 제거를 한 뒤에, 마지막에 SceneDelegate에서 weatherDataArray의 location값을
-//locationSavedArray에 비교해서 저장하는 것으로 변경 예정.
+// MARK: - Custom Delegate
+
 
 extension MainViewController: ScrollDelegate {
     func views() {

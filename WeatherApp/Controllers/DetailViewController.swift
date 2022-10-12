@@ -11,7 +11,6 @@ class DetailViewController: UIViewController {
 
     @IBOutlet weak var conditionImageView: UIImageView!
     @IBOutlet weak var locationNameLabel: UILabel!
-
     @IBOutlet weak var temperatureLabel: UILabel!
     @IBOutlet weak var humidityLabel: UILabel!
     @IBOutlet weak var feelslikeLabel: UILabel!
@@ -32,7 +31,7 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.tintColor = UIColor(named: "darkNavi")
-        // Do any additional setup after loading the view.
+        
     }
 
     private func configureCell(){

@@ -49,6 +49,7 @@ extension LocationListViewController: UITableViewDataSource, UITableViewDelegate
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = locationTableView.dequeueReusableCell(withIdentifier: "LocationListCell", for: indexPath) as! LocationListCell
         cell.textLabel?.text = weatherManager.weatherDatasArray[indexPath.row].name
+        cell.textLabel?.textColor = UIColor(named: "darkNavi")
         //cell.selectionStyle = .none
         return cell
     }
@@ -121,7 +122,5 @@ extension LocationListViewController: UISearchBarDelegate{
             }
         }
     }
-    
-    
 }
 

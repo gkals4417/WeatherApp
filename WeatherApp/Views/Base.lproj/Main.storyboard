@@ -276,7 +276,7 @@
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vIk-DI-Ckf"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" name="blueWhite"/>
                         <constraints>
                             <constraint firstItem="vIk-DI-Ckf" firstAttribute="trailing" secondItem="egZ-t0-d36" secondAttribute="trailing" id="7AN-hS-zGB"/>
                             <constraint firstItem="vIk-DI-Ckf" firstAttribute="bottom" secondItem="egZ-t0-d36" secondAttribute="bottom" id="R8A-Zu-k9H"/>
