@@ -1,4 +1,4 @@
-# 날씨보여줭.app
+# ☀️날씨보여줭.app
 
 ## Project Introduction
 
@@ -28,7 +28,7 @@
 ## Preview
 
 |SideMenu & TableView|CollectionView|CoreLocation|Detail Information|TableView & MessageUI|
-|---|---|---|---|---|
+|--------------------|--------------|------------|------------------|---------------------|
 |![1](https://user-images.githubusercontent.com/70322435/195484901-ef9fcef5-62e9-4337-ba22-d1fdda9f83ef.gif)|![2](https://user-images.githubusercontent.com/70322435/195484951-752de76e-4970-46db-8671-e4a8fc751459.gif)|![3](https://user-images.githubusercontent.com/70322435/195484969-9f983cd9-36e8-4e9c-9d08-6800a8579abc.gif)|![RPReplay_Final1665639877](https://user-images.githubusercontent.com/70322435/195511937-315688e1-2453-4477-a247-878ab0a0621e.gif)|![4](https://user-images.githubusercontent.com/70322435/195484982-bd4a39d5-80e7-4be2-9bf2-acdce4a5e2d5.gif)|
 
 ### [SideMenu](https://github.com/jonkykong/SideMenu#readme)
@@ -50,8 +50,8 @@ self.weatherDatasArray.insert(successData, at: 0)
 ```
 
 ### CoreLocation
-* 날씨 어플리케이션에서는 현재 위치를 파악하는 것이 필수이기 때문에, CoreLocation 라이브러리르 이용했습니다.<br/>
-* 위치를 파악하는 방법으로 latitude와 longitude값으 얻어서 외부 API로 값을 넘기는 방식을 선택했습니다. (수동으로 지역을 추가하는 경우, 지역 이름을 외부 API로 값을 넘겼습니다.)
+* 날씨 어플리케이션에서는 현재 위치를 파악하는 것이 필수이기 때문에, CoreLocation 라이브러리를 이용했습니다.<br/>
+* 위치를 파악하는 방법으로 latitude와 longitude값을 얻어서 외부 API로 값을 넘기는 방식을 선택했습니다. (수동으로 지역을 추가하는 경우, 지역 이름을 외부 API로 값을 넘겼습니다.)
 ```swift
 extension MainViewController: CLLocationManagerDelegate{
    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]){
@@ -172,3 +172,5 @@ MVC Pattern<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;      └─ DetailViewController.swift<br/>
 <br/>
 <img width="849" alt="Screenshot 2022-10-13 at 2 33 53 PM" src="https://user-images.githubusercontent.com/70322435/195510181-d3d5dc8d-9d31-420f-9121-e0fa15dfc798.png">
+
+## Troubles & Solution
