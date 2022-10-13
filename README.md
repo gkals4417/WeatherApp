@@ -34,23 +34,112 @@
 ### [SideMenu](https://github.com/jonkykong/SideMenu#readme)
 * 지역 추가, 제거를 하기 위한 기능으로 굳이 새로운 tableView를 전체화면으로 띄우는 것보다, 작은 화면으로 나왔다가 사라지는 방법이 더 깔끔하다고 생각되어서 채택했습니다.<br/>
 * MainViewController의 확장으로 SideMenu Delegate를 이용하여, SideMenu가 사라지면 자동으로 MainViewController의 collectionView를 새로고침하도록 했습니다.
-
+```swift
+extension MainViewController: SideMenuNavigationControllerDelegate{
+   func sideMenuDidDisappear(menu: SideMenuNavigationController, animated: Bool){
+      collectionView.reloadData()
+   }
+}
+```
 ### CollectionView
 * 메인 화면에는 저장된 지역의 기본 정보를 보여지게 했습니다.<br/>
 * CollectionView의 Cell을 전체 화면으로 한 뒤, Scroll Direction을 Horizontal로 해서 좌, 우로 넘길 수 있게 했습니다.<br/>
 * 지역을 수동으로 추가하거나, GPS를 이용해서 지역이 추가되면, 그 지역이 CollectionView의 제일 첫번째로 오게 했습니다.
+```swift
+self.weatherDatasArray.insert(successData, at: 0)
+```
 
 ### CoreLocation
 * 날씨 어플리케이션에서는 현재 위치를 파악하는 것이 필수이기 때문에, CoreLocation 라이브러리르 이용했습니다.<br/>
 * 위치를 파악하는 방법으로 latitude와 longitude값으 얻어서 외부 API로 값을 넘기는 방식을 선택했습니다. (수동으로 지역을 추가하는 경우, 지역 이름을 외부 API로 값을 넘겼습니다.)
-
+```swift
+extension MainViewController: CLLocationManagerDelegate{
+   func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]){
+      guard let location = locations.last else {return}
+      locationManager.stopUpdatingLocation()
+      lat = location.coordinate.latitude
+      lon = location.coordinate.longitude
+   }
+}
+```
 ### Detail Information
-* SideMenu의 지역 cell을 선택하면 상세 날씨 정보르 확인할 수 있게 했습니다.<br/>
-* 상세 정보의 경우, tableView의 indexPath.row를 이용하여 선택한 지역이 상시 날씨 정보로 나오 수 있게 했습니다.
+* SideMenu의 지역 cell을 선택하면 상세 날씨 정보를 확인할 수 있게 했습니다.<br/>
+* 상세 정보의 경우, tableView의 indexPath.row를 이용하여 선택한 지역을 상세 정보로 나올 수 있게 했습니다.<br/>
+* SideMenu의 tableViewController에 prepare를 이용하여 날씨 정보를 Detail Information의 viewController로 넘기고, 속성감시자를 통해 날씨 정보의 변동이 생기면 화면에 데이터를 업데이트하도록 했습니다.
+```swift
+override func prepare(for segue: UIStoryboardSegue, sender: Any?){
+   if segue.identifier == "toDetailVC"{
+      let detailVC = segue.destination as! DetailViewController
+      let index = sender as! IndexPath
+      DispatchQueue.main.async{
+         detailVC.datas = self.weatherManager.weatherDatasArray[index.row]
+      }
+   }
+}
+```
+```swift
+var datas: Welcome?{
+   didSet{
+      configureCell()
+   }
+}
 
+private func configureCell(){
+   guard let datas = datas else {return}
+   locationNameLabel.text = "\(datas.name)"
+   humidityLabel.text = "습도 | \(String(describing: datas.main.humidity)) %"
+   temperatureLabel.text = "기온 | \(String(format: "%.1f", datas.main.temp)) ℃"
+   maxTempLabel.text = "최고 기온 | \(String(format: "%.1f", datas.main.tempMax)) ℃"
+   minTempLabel.text = "최저 기온 | \(String(format: "%.1f", datas.main.tempMin)) ℃"
+   feelslikeLabel.text = "체감 온도 | \(String(format: "%.1f", datas.main.feelsLike)) ℃"
+   pressureLabel.text = "기압 | \(String(describing: datas.main.pressure)) hPa"
+   windSpeedLabel.text = "풍속 | \(String(describing: datas.wind.speed)) m/s"
+}
+```
 ### TableView & MessageUI
 * 탭바에 setting을 추가하여 위치 확인 동의 여부, 개발자 정보, API정보, 문의하기를 tableView로 추가했습니다.<br/>
+```swift
+//위치 확인 동의 여부
+extension SettingViewController: CLLocationManagerDelegate{
+   func locationAuthCheck(){
+      let status: CLAuthorizationStatus
+        
+      if #available(iOS 14, *){
+          status = locationManager.authorizationStatus
+      } else {
+          status = CLLocationManager.authorizationStatus()
+      }
+  
+      switch status {
+      case .denied:
+          locationAuthStatus = "위치정보 : 사용 안함"
+          settingArray[0] = locationAuthStatus
+      case .authorizedAlways, .authorizedWhenInUse, .restricted:
+          locationAuthStatus = "위치정보 : 사용중"
+          settingArray[0] = locationAuthStatus
+      default:
+          print("NULL")
+    }
+  }
+}
+```
 * 문의하기의 경우, 터치를 하면 바로 개발자의 이메일로 메일을 보낼 수 있게 MessageUI 라이브러리를 선택했습니다.
+```swift
+func tableView(_ tableView: UItableView, didSelectRowAt indexPath: IndexPath){
+   if indexPath.row == 1 {
+      let email = "gkals4417@icloud.com"
+      let subject = "문의하기"
+      let mail = MFMailComposeViewController()
+      
+      if MFMailComposeViewController.canSendMail(){
+         mail.mailComposeDelegate = self
+         mail.setToRecipients([email])
+         mail.setSubject(subject)
+         present(mail, animated: true)
+      }
+   }
+}
+```
 
 ## Structure
 
