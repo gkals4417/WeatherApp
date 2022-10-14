@@ -43,13 +43,14 @@ extension SettingViewController: UITableViewDataSource, UITableViewDelegate {
         guard let header = view as? UITableViewHeaderFooterView else {return}
         header.textLabel?.font = UIFont.boldSystemFont(ofSize: 30)
         header.textLabel?.textColor = UIColor(named: "darkNavi")
-        header.textLabel?.frame = header.bounds
-    }
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        
-        return "   Setting"
+        header.textLabel?.frame = header.frame
     }
     
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+
+        return "   Setting"
+    }
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return settingArray.count
     }
@@ -57,7 +58,6 @@ extension SettingViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = settingTableView.dequeueReusableCell(withIdentifier: "SettingCell", for: indexPath) as! SettingCell
         cell.textLabel?.text = settingArray[indexPath.row]
-        cell.selectionStyle = .none
         
         return cell
     }
@@ -91,6 +91,7 @@ extension SettingViewController: UITableViewDataSource, UITableViewDelegate {
             alert.addAction(ok)
             present(alert, animated: true)
         }
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }
 
