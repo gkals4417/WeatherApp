@@ -22,7 +22,7 @@
    <br/>
    <a href="https://github.com/jonkykong/SideMenu#readme"><img src="https://img.shields.io/badge/SideMenu-FFFFFF?style=flat"/></a>
    <br/>
-   <img src="https://img.shields.io/badge/MacbookPro M1 Ultra-FFFFFF?style=flat"/></a>
+   <img src="https://img.shields.io/badge/MacbookPro M1 Max-FFFFFF?style=flat"/></a>
 </div> 
 
 ## Preview
