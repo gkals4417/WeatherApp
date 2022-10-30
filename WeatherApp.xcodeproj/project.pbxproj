@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4D1E4AC2290E075E00062E11 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1E4AC1290E075E00062E11 /* WebViewController.swift */; };
 		4D20C2FB28ED300000C279E4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D20C2FA28ED300000C279E4 /* AppDelegate.swift */; };
 		4D20C2FD28ED300000C279E4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D20C2FC28ED300000C279E4 /* SceneDelegate.swift */; };
 		4D20C2FF28ED300000C279E4 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D20C2FE28ED300000C279E4 /* MainViewController.swift */; };
@@ -28,9 +29,11 @@
 		4D7C84E228EE98B600FD4B0C /* SavedLocationData+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7C84E028EE98B600FD4B0C /* SavedLocationData+CoreDataProperties.swift */; };
 		4D7C84E428EEB70900FD4B0C /* WeatherCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7C84E328EEB70800FD4B0C /* WeatherCollectionViewCell.swift */; };
 		4D8E1A0228F293B80096D309 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8E1A0128F293B80096D309 /* DetailViewController.swift */; };
+		4DE5A01F290BB07800BCD061 /* 개인정보처리방침.html in Resources */ = {isa = PBXBuildFile; fileRef = 4DE5A01E290BB07800BCD061 /* 개인정보처리방침.html */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4D1E4AC1290E075E00062E11 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		4D20C2F728ED300000C279E4 /* WeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D20C2FA28ED300000C279E4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4D20C2FC28ED300000C279E4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -53,6 +56,7 @@
 		4D7C84E028EE98B600FD4B0C /* SavedLocationData+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SavedLocationData+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		4D7C84E328EEB70800FD4B0C /* WeatherCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherCollectionViewCell.swift; sourceTree = "<group>"; };
 		4D8E1A0128F293B80096D309 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		4DE5A01E290BB07800BCD061 /* 개인정보처리방침.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "개인정보처리방침.html"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +90,7 @@
 		4D20C2F928ED300000C279E4 /* WeatherApp */ = {
 			isa = PBXGroup;
 			children = (
+				4DE5A01E290BB07800BCD061 /* 개인정보처리방침.html */,
 				4D20C30328ED300000C279E4 /* SavedLocationData.xcdatamodeld */,
 				4D20C2FA28ED300000C279E4 /* AppDelegate.swift */,
 				4D20C2FC28ED300000C279E4 /* SceneDelegate.swift */,
@@ -107,6 +112,7 @@
 				4D20C31B28EE721F00C279E4 /* LocationListViewController.swift */,
 				4D20C31F28EE725E00C279E4 /* SettingViewController.swift */,
 				4D8E1A0128F293B80096D309 /* DetailViewController.swift */,
+				4D1E4AC1290E075E00062E11 /* WebViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -208,6 +214,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4D20C30A28ED300100C279E4 /* LaunchScreen.storyboard in Resources */,
+				4DE5A01F290BB07800BCD061 /* 개인정보처리방침.html in Resources */,
 				4D20C30728ED300100C279E4 /* Assets.xcassets in Resources */,
 				4D20C30228ED300000C279E4 /* Main.storyboard in Resources */,
 			);
@@ -221,6 +228,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4D20C31228ED382A00C279E4 /* Constants.swift in Sources */,
+				4D1E4AC2290E075E00062E11 /* WebViewController.swift in Sources */,
 				4D8E1A0228F293B80096D309 /* DetailViewController.swift in Sources */,
 				4D7C84E428EEB70900FD4B0C /* WeatherCollectionViewCell.swift in Sources */,
 				4D20C30528ED300000C279E4 /* SavedLocationData.xcdatamodeld in Sources */,

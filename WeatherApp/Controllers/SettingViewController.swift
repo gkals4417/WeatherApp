@@ -32,6 +32,7 @@ class SettingViewController: UIViewController, MFMailComposeViewControllerDelega
         
         locationAuthCheck()
     }
+    
 }
 
 
@@ -79,6 +80,9 @@ extension SettingViewController: UITableViewDataSource, UITableViewDelegate {
                 
             }
         } else if indexPath.row == 2 {
+            let vc = WebViewController()
+            vc.modalPresentationStyle = .popover
+            present(vc, animated: true)
             
         } else if indexPath.row == 3 {
             let alert = UIAlertController(title: "개발자 정보", message: "Made by Pulsar", preferredStyle: .alert)
