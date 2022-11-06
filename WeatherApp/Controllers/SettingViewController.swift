@@ -58,7 +58,14 @@ extension SettingViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = settingTableView.dequeueReusableCell(withIdentifier: "SettingCell", for: indexPath) as! SettingCell
-        cell.textLabel?.text = settingArray[indexPath.row]
+
+        if #available(iOS 14.0, *){
+            var content = cell.defaultContentConfiguration()
+            content.text = settingArray[indexPath.row]
+            cell.contentConfiguration = content
+        } else {
+            cell.textLabel?.text = settingArray[indexPath.row]
+        }
         
         return cell
     }
@@ -106,7 +113,7 @@ extension SettingViewController: CLLocationManagerDelegate{
     func locationAuthCheck(){
         let status: CLAuthorizationStatus
         
-        if #available(iOS 14, *){
+        if #available(iOS 14.0, *){
             status = locationManager.authorizationStatus
         } else {
             status = CLLocationManager.authorizationStatus()

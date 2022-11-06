@@ -104,10 +104,11 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MainWeatherCollection", for: indexPath) as! WeatherCollectionViewCell
         
-        if weatherManager.weatherDatasArray.count > indexPath.row {
-            let list = weatherManager.weatherDatasArray[indexPath.row]
-            cell.datas = list
-        }
+//        if weatherManager.weatherDatasArray.count > indexPath.row {
+//            let list = weatherManager.weatherDatasArray[indexPath.row]
+//            cell.datas = list
+//        }
+        cell.datas = weatherManager.weatherDatasArray[indexPath.row]
         
         return cell
     }

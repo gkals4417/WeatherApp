@@ -122,17 +122,16 @@ class WeatherManager{
     //DELETE
     func deleteLocationFromCoreData(with location: SavedLocationData, completion: @escaping () -> Void){
         coreDataManager.deleteLocation(with: location) {
-            self.fetchLocationFromCoreData {
-                completion()
-            }
+//            self.fetchLocationFromCoreData {
+//                completion()
+//            }
         }
     }
     
     func deleteLocation(with location: Welcome, completion: @escaping () -> Void){
-        let locationSaved = locationSavedArray.filter { $0.location == location.name
-            
-        }
+        let locationSaved = locationSavedArray.filter { $0.location == location.name}
         
+        print("asdf \(locationSaved)")
         if let targetLocationSaved = locationSaved.first{
             self.deleteLocationFromCoreData(with: targetLocationSaved) {
                 completion()

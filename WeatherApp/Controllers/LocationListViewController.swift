@@ -74,12 +74,16 @@ extension LocationListViewController: UITableViewDataSource, UITableViewDelegate
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
+            weatherManager.deleteLocation(with: weatherManager.weatherDatasArray[indexPath.row]) {
+                
+            }
             weatherManager.weatherDatasArray.remove(at: indexPath.row)
 //            weatherManager.deleteLocation(with: weatherManager.weatherDatasArray[indexPath.row]) {
 //                print("DELETE")
 //                print("After DELETE WeatherData Array : \(self.weatherManager.weatherDatasArray)")
 //                print("After DELETE CoreData Array : \(self.weatherManager.locationSavedArray)")
 //            }
+            
             locationTableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
             
