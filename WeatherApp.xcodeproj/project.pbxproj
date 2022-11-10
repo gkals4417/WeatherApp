@@ -17,6 +17,7 @@
 		4DB17562291CD36900DB5E86 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB17561291CD36900DB5E86 /* MainViewController.swift */; };
 		4DB17564291CD39B00DB5E86 /* WeatherManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB17563291CD39B00DB5E86 /* WeatherManager.swift */; };
 		4DB17566291CD4B200DB5E86 /* WeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB17565291CD4B200DB5E86 /* WeatherModel.swift */; };
+		4DB17569291D32E200DB5E86 /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB17568291D32E200DB5E86 /* LocationViewController.swift */; };
 		4DE5A01F290BB07800BCD061 /* 개인정보처리방침.html in Resources */ = {isa = PBXBuildFile; fileRef = 4DE5A01E290BB07800BCD061 /* 개인정보처리방침.html */; };
 /* End PBXBuildFile section */
 
@@ -33,6 +34,7 @@
 		4DB17563291CD39B00DB5E86 /* WeatherManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherManager.swift; sourceTree = "<group>"; };
 		4DB17565291CD4B200DB5E86 /* WeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherModel.swift; sourceTree = "<group>"; };
 		4DB17567291CD7D500DB5E86 /* WeatherApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WeatherApp.entitlements; sourceTree = "<group>"; };
+		4DB17568291D32E200DB5E86 /* LocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
 		4DE5A01E290BB07800BCD061 /* 개인정보처리방침.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "개인정보처리방침.html"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -86,6 +88,7 @@
 			isa = PBXGroup;
 			children = (
 				4DB17561291CD36900DB5E86 /* MainViewController.swift */,
+				4DB17568291D32E200DB5E86 /* LocationViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -185,6 +188,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4DB17569291D32E200DB5E86 /* LocationViewController.swift in Sources */,
 				4D20C30528ED300000C279E4 /* SavedLocationData.xcdatamodeld in Sources */,
 				4D20C2FB28ED300000C279E4 /* AppDelegate.swift in Sources */,
 				4DB17564291CD39B00DB5E86 /* WeatherManager.swift in Sources */,

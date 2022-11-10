@@ -9,21 +9,31 @@ import UIKit
 import WeatherKit
 import CoreLocation
 
-class WeatherManager: ObservableObject {
+
+
+class WeatherManager {
     
     static let shared = WeatherManager()
     
+    var delegate: GetWeatherDataDelegate?
     let weatherService = WeatherService()
-
+    var weatherData: Weather!{
+        didSet {
+            print("WeatherData Changed Detected")
+            delegate?.sendToVC(data: weatherData)
+        }
+    }
     
-    func getWeather(location: CLLocation) {
+    func getWeather(location: CLLocation, completion: @escaping () -> Void){
         Task {
             do {
                 let result = try await weatherService.weather(for: location)
-                print(result.currentWeather.temperature)
+                weatherData = result
             } catch {
-                
+                print(error)
             }
         }
     }
 }
+
+
