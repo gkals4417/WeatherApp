@@ -289,3 +289,7 @@ extension LocationListViewController: UISearchBarDelegate{
 ## NEXT...
 
 단위 변경 설정, 개인정보처리방침 등 더 다양한 기능들을 추가하고 출시를 목표로 더 다듬을 계획입니다.
+
+---
+
+2022.11.10 앱스토어 출시
