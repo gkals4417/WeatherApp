@@ -293,3 +293,4 @@ extension LocationListViewController: UISearchBarDelegate{
 ---
 
 2022.11.10 앱스토어 출시
+2022.11.11 API 변경 작업 시작 (WeatherKit)
