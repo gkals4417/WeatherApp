@@ -16,8 +16,12 @@
 		4D7C84BE28EE82D200FD4B0C /* SideMenu in Frameworks */ = {isa = PBXBuildFile; productRef = 4D7C84BD28EE82D200FD4B0C /* SideMenu */; };
 		4DB17562291CD36900DB5E86 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB17561291CD36900DB5E86 /* MainViewController.swift */; };
 		4DB17564291CD39B00DB5E86 /* WeatherManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB17563291CD39B00DB5E86 /* WeatherManager.swift */; };
-		4DB17566291CD4B200DB5E86 /* WeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB17565291CD4B200DB5E86 /* WeatherModel.swift */; };
 		4DB17569291D32E200DB5E86 /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB17568291D32E200DB5E86 /* LocationViewController.swift */; };
+		4DB1756C291E05D500DB5E86 /* SavedLocationData+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB1756A291E05D500DB5E86 /* SavedLocationData+CoreDataClass.swift */; };
+		4DB1756D291E05D500DB5E86 /* SavedLocationData+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB1756B291E05D500DB5E86 /* SavedLocationData+CoreDataProperties.swift */; };
+		4DB1756F291E060E00DB5E86 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB1756E291E060E00DB5E86 /* CoreDataManager.swift */; };
+		4DB17571291E114D00DB5E86 /* LocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB17570291E114D00DB5E86 /* LocationCell.swift */; };
+		4DB17573291E2CA800DB5E86 /* WeatherCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB17572291E2CA800DB5E86 /* WeatherCell.swift */; };
 		4DE5A01F290BB07800BCD061 /* 개인정보처리방침.html in Resources */ = {isa = PBXBuildFile; fileRef = 4DE5A01E290BB07800BCD061 /* 개인정보처리방침.html */; };
 /* End PBXBuildFile section */
 
@@ -32,9 +36,13 @@
 		4D20C30B28ED300100C279E4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4DB17561291CD36900DB5E86 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		4DB17563291CD39B00DB5E86 /* WeatherManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherManager.swift; sourceTree = "<group>"; };
-		4DB17565291CD4B200DB5E86 /* WeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherModel.swift; sourceTree = "<group>"; };
 		4DB17567291CD7D500DB5E86 /* WeatherApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WeatherApp.entitlements; sourceTree = "<group>"; };
 		4DB17568291D32E200DB5E86 /* LocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
+		4DB1756A291E05D500DB5E86 /* SavedLocationData+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SavedLocationData+CoreDataClass.swift"; sourceTree = "<group>"; };
+		4DB1756B291E05D500DB5E86 /* SavedLocationData+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SavedLocationData+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		4DB1756E291E060E00DB5E86 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		4DB17570291E114D00DB5E86 /* LocationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationCell.swift; sourceTree = "<group>"; };
+		4DB17572291E2CA800DB5E86 /* WeatherCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherCell.swift; sourceTree = "<group>"; };
 		4DE5A01E290BB07800BCD061 /* 개인정보처리방침.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "개인정보처리방침.html"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -97,6 +105,8 @@
 			isa = PBXGroup;
 			children = (
 				4D20C30028ED300000C279E4 /* Main.storyboard */,
+				4DB17570291E114D00DB5E86 /* LocationCell.swift */,
+				4DB17572291E2CA800DB5E86 /* WeatherCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -104,7 +114,9 @@
 		4DB17560291CD34800DB5E86 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				4DB17565291CD4B200DB5E86 /* WeatherModel.swift */,
+				4DB1756A291E05D500DB5E86 /* SavedLocationData+CoreDataClass.swift */,
+				4DB1756B291E05D500DB5E86 /* SavedLocationData+CoreDataProperties.swift */,
+				4DB1756E291E060E00DB5E86 /* CoreDataManager.swift */,
 				4DB17563291CD39B00DB5E86 /* WeatherManager.swift */,
 			);
 			path = Models;
@@ -188,12 +200,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4DB1756D291E05D500DB5E86 /* SavedLocationData+CoreDataProperties.swift in Sources */,
 				4DB17569291D32E200DB5E86 /* LocationViewController.swift in Sources */,
 				4D20C30528ED300000C279E4 /* SavedLocationData.xcdatamodeld in Sources */,
+				4DB1756C291E05D500DB5E86 /* SavedLocationData+CoreDataClass.swift in Sources */,
 				4D20C2FB28ED300000C279E4 /* AppDelegate.swift in Sources */,
 				4DB17564291CD39B00DB5E86 /* WeatherManager.swift in Sources */,
+				4DB17571291E114D00DB5E86 /* LocationCell.swift in Sources */,
 				4D20C2FD28ED300000C279E4 /* SceneDelegate.swift in Sources */,
-				4DB17566291CD4B200DB5E86 /* WeatherModel.swift in Sources */,
+				4DB17573291E2CA800DB5E86 /* WeatherCell.swift in Sources */,
+				4DB1756F291E060E00DB5E86 /* CoreDataManager.swift in Sources */,
 				4DB17562291CD36900DB5E86 /* MainViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -347,13 +363,16 @@
 				INFOPLIST_FILE = WeatherApp/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "날씨보여줭";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.weather";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = Location;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "날씨데이터를 얻기 위해 위치정보가 필요합니다.";
+				INFOPLIST_KEY_NSLocationUsageDescription = "날씨데이터를 얻기 위해 위치정보가 필요합니다.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "날씨데이터를 얻기 위해 위치정보가 필요합니다.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -384,13 +403,16 @@
 				INFOPLIST_FILE = WeatherApp/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "날씨보여줭";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.weather";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = Location;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "날씨데이터를 얻기 위해 위치정보가 필요합니다.";
+				INFOPLIST_KEY_NSLocationUsageDescription = "날씨데이터를 얻기 위해 위치정보가 필요합니다.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "날씨데이터를 얻기 위해 위치정보가 필요합니다.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
