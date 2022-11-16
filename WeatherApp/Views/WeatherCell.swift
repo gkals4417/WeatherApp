@@ -18,64 +18,44 @@ class WeatherCell: UICollectionViewCell {
     @IBOutlet weak var feelsLikeLabel: UILabel!
     
     
-    private let locationManager = CLLocationManager()
-    private let weatherManager = WeatherManager.shared
-    
-    var datas: Weather?{
+    var datas: CurrentWeather?{
         didSet {
             configureCell()
         }
     }
     
-    // MARK: - Coordinate to Placemark name
-    
-    func lookUpCurrentLocation(completionHandler: @escaping (CLPlacemark?) -> Void ) {
-        if let lastLocation = self.locationManager.location {
-            let geocoder = CLGeocoder()
-                
-            // Look up the location and pass it to the completion handler
-            geocoder.reverseGeocodeLocation(lastLocation,
-                        completionHandler: { (placemarks, error) in
-                if error == nil {
-                    let firstLocation = placemarks?[0]
-                    completionHandler(firstLocation)
-                }
-                else {
-                 // An error occurred during geocoding.
-                    completionHandler(nil)
-                }
-            })
-        }
-        else {
-            // No location was available.
-            completionHandler(nil)
-        }
-    }
-    
-    // MARK: - Placemark name to Coordinate
-
-    func getCoordinate(addressString : String,
-            completionHandler: @escaping(CLLocationCoordinate2D, NSError?) -> Void ) {
-        let geocoder = CLGeocoder()
-        geocoder.geocodeAddressString(addressString) { (placemarks, error) in
-            if error == nil {
-                if let placemark = placemarks?[0] {
-                    let location = placemark.location!
-                        
-                    completionHandler(location.coordinate, nil)
-                    return
-                }
-            }
-            completionHandler(kCLLocationCoordinate2DInvalid, error as NSError?)
-        }
-    }
-    
     func configureCell(){
         guard let datas = datas else {return}
-//        cityLabel.text = "\(datas.currentWeather.metadata.location)"
-        temperatureLabel.text = "\(datas.currentWeather.temperature)"
-        feelsLikeLabel.text = "\(datas.currentWeather.apparentTemperature)"
-        humidityLabel.text = "\(datas.currentWeather.humidity)"
+        let tempHumidity = (datas.humidity) * 100
+        let tempTemperature = datas.temperature.converted(to: .celsius).formatted()
+        let tempFeelsLike = datas.apparentTemperature.converted(to: .celsius).formatted()
+        temperatureLabel.text = tempTemperature
+        feelsLikeLabel.text = tempFeelsLike
+        humidityLabel.text = "\(String(format: "%.1f", tempHumidity)) %"
+        
+        switch datas.condition {
+        case .clear:
+            conditionImageView.image = UIImage(named: "01d")
+        case .mostlyClear:
+            conditionImageView.image = UIImage(named: "02d")
+        case .cloudy:
+            conditionImageView.image = UIImage(named: "03d")
+        case .mostlyCloudy:
+            conditionImageView.image = UIImage(named: "04d")
+        case .rain:
+            conditionImageView.image = UIImage(named: "09d")
+        case .heavyRain:
+            conditionImageView.image = UIImage(named: "10d")
+        case .thunderstorms:
+            conditionImageView.image = UIImage(named: "11d")
+        case .snow:
+            conditionImageView.image = UIImage(named: "13d")
+        case .haze:
+            conditionImageView.image = UIImage(named: "50d")
+        default:
+            conditionImageView.image = UIImage(named: "02d")
+        }
     }
 
+    
 }

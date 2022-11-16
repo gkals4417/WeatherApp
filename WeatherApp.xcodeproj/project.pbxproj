@@ -13,6 +13,9 @@
 		4D20C30528ED300000C279E4 /* SavedLocationData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4D20C30328ED300000C279E4 /* SavedLocationData.xcdatamodeld */; };
 		4D20C30728ED300100C279E4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4D20C30628ED300100C279E4 /* Assets.xcassets */; };
 		4D20C30A28ED300100C279E4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D20C30828ED300100C279E4 /* LaunchScreen.storyboard */; };
+		4D6A85372924999D0050E38C /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6A85362924999D0050E38C /* DetailViewController.swift */; };
+		4D6A85392924AD5A0050E38C /* Weather - Data Sources.html in Resources */ = {isa = PBXBuildFile; fileRef = 4D6A85382924AD5A0050E38C /* Weather - Data Sources.html */; };
+		4D6A853B2924AF3E0050E38C /* InformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6A853A2924AF3E0050E38C /* InformationViewController.swift */; };
 		4D7C84BE28EE82D200FD4B0C /* SideMenu in Frameworks */ = {isa = PBXBuildFile; productRef = 4D7C84BD28EE82D200FD4B0C /* SideMenu */; };
 		4DB17562291CD36900DB5E86 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB17561291CD36900DB5E86 /* MainViewController.swift */; };
 		4DB17564291CD39B00DB5E86 /* WeatherManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB17563291CD39B00DB5E86 /* WeatherManager.swift */; };
@@ -34,9 +37,11 @@
 		4D20C30628ED300100C279E4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4D20C30928ED300100C279E4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4D20C30B28ED300100C279E4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4D6A85362924999D0050E38C /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		4D6A85382924AD5A0050E38C /* Weather - Data Sources.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "Weather - Data Sources.html"; sourceTree = "<group>"; };
+		4D6A853A2924AF3E0050E38C /* InformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationViewController.swift; sourceTree = "<group>"; };
 		4DB17561291CD36900DB5E86 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		4DB17563291CD39B00DB5E86 /* WeatherManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherManager.swift; sourceTree = "<group>"; };
-		4DB17567291CD7D500DB5E86 /* WeatherApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WeatherApp.entitlements; sourceTree = "<group>"; };
 		4DB17568291D32E200DB5E86 /* LocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
 		4DB1756A291E05D500DB5E86 /* SavedLocationData+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SavedLocationData+CoreDataClass.swift"; sourceTree = "<group>"; };
 		4DB1756B291E05D500DB5E86 /* SavedLocationData+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SavedLocationData+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -77,11 +82,11 @@
 		4D20C2F928ED300000C279E4 /* WeatherApp */ = {
 			isa = PBXGroup;
 			children = (
-				4DB17567291CD7D500DB5E86 /* WeatherApp.entitlements */,
 				4DB17560291CD34800DB5E86 /* Models */,
 				4D20C31428ED394300C279E4 /* Views */,
 				4D20C31328ED393B00C279E4 /* Controllers */,
 				4DE5A01E290BB07800BCD061 /* 개인정보처리방침.html */,
+				4D6A85382924AD5A0050E38C /* Weather - Data Sources.html */,
 				4D20C30328ED300000C279E4 /* SavedLocationData.xcdatamodeld */,
 				4D20C2FA28ED300000C279E4 /* AppDelegate.swift */,
 				4D20C2FC28ED300000C279E4 /* SceneDelegate.swift */,
@@ -97,6 +102,8 @@
 			children = (
 				4DB17561291CD36900DB5E86 /* MainViewController.swift */,
 				4DB17568291D32E200DB5E86 /* LocationViewController.swift */,
+				4D6A85362924999D0050E38C /* DetailViewController.swift */,
+				4D6A853A2924AF3E0050E38C /* InformationViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -186,6 +193,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4D6A85392924AD5A0050E38C /* Weather - Data Sources.html in Resources */,
 				4D20C30A28ED300100C279E4 /* LaunchScreen.storyboard in Resources */,
 				4DE5A01F290BB07800BCD061 /* 개인정보처리방침.html in Resources */,
 				4D20C30728ED300100C279E4 /* Assets.xcassets in Resources */,
@@ -200,9 +208,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4D6A853B2924AF3E0050E38C /* InformationViewController.swift in Sources */,
 				4DB1756D291E05D500DB5E86 /* SavedLocationData+CoreDataProperties.swift in Sources */,
 				4DB17569291D32E200DB5E86 /* LocationViewController.swift in Sources */,
 				4D20C30528ED300000C279E4 /* SavedLocationData.xcdatamodeld in Sources */,
+				4D6A85372924999D0050E38C /* DetailViewController.swift in Sources */,
 				4DB1756C291E05D500DB5E86 /* SavedLocationData+CoreDataClass.swift in Sources */,
 				4D20C2FB28ED300000C279E4 /* AppDelegate.swift in Sources */,
 				4DB17564291CD39B00DB5E86 /* WeatherManager.swift in Sources */,
@@ -378,7 +388,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.pulsar.WeatherApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -418,7 +428,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.pulsar.WeatherApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";

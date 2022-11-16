@@ -38,7 +38,7 @@ class LocationViewController: UIViewController {
 
 extension LocationViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return weatherManager.weatherDataArray.count
+        return weatherManager.currentWeatherDataArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -55,7 +55,7 @@ extension LocationViewController: UITableViewDelegate, UITableViewDataSource {
             let subject = weatherManager.savedLocationArray[indexPath.row]
             //let anotherSubject = weatherManager.weatherDataArray[indexPath.row]
             weatherManager.savedLocationArray.remove(at: indexPath.row)
-            weatherManager.weatherDataArray.remove(at: indexPath.row)
+            weatherManager.currentWeatherDataArray.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
             weatherManager.deleteLocationData(targetData: subject) {
                 
@@ -63,6 +63,27 @@ extension LocationViewController: UITableViewDelegate, UITableViewDataSource {
             tableView.reloadData()
         } else if editingStyle == .insert {
             
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "toDetailVC", sender: indexPath)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toDetailVC" {
+            let detailVC = segue.destination as! DetailViewController
+            let index = sender as! IndexPath
+            
+            DispatchQueue.main.async {
+                detailVC.datas = self.weatherManager.currentWeatherDataArray[index.row]
+                
+                if let temp = self.weatherManager.savedLocationArray[index.row].location {
+                    detailVC.locationLabel.text = temp
+                } else {
+                    print("이상함")
+                }
+            }
         }
     }
 }
@@ -131,13 +152,13 @@ extension LocationViewController: UISearchBarDelegate {
             lon = result.longitude
             print(lat)
             print(lon)
-            
-        }
-        DispatchQueue.main.async {
-            self.weatherManager.getWeatherWithCood(lat: lat, lon: lon) {
-                
+            DispatchQueue.main.async {
+                self.weatherManager.getCurrentWeatherWithCood(lat: lat, lon: lon) {
+                    
+                }
             }
         }
+        
         
     }
 }

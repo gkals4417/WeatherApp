@@ -3,7 +3,7 @@
 //  WeatherApp
 //
 //  Created by Hamin Jeong on 2022/11/10.
-//
+//  Weather
 
 import UIKit
 import WeatherKit
@@ -52,8 +52,8 @@ class MainViewController: UIViewController {
     private func basicSetupFunc(){
         var locationArray: [String] = []
         var removeDuplicateArray: [String] = []
-        var lat: CLLocationDegrees = 0
-        var lon: CLLocationDegrees = 0
+//        var lat: CLLocationDegrees = 0
+//        var lon: CLLocationDegrees = 0
         
         weatherManager.savedLocationArray.forEach { result in
             guard let location = result.location else {return}
@@ -64,13 +64,19 @@ class MainViewController: UIViewController {
         }
         
         for location in removeDuplicateArray {
+//            self.getCoordinate(addressString: location) { result, error in
+//                lat = result.latitude
+//                lon = result.longitude
+//                DispatchQueue.main.async {
+//                    self.weatherManager.getWeatherWithCood(lat: lat, lon: lon) {
+//
+//                    }
+//                }
+//            }
+            
             self.getCoordinate(addressString: location) { result, error in
-                lat = result.latitude
-                lon = result.longitude
-                DispatchQueue.main.async {
-                    self.weatherManager.getWeatherWithCood(lat: lat, lon: lon) {
-                        
-                    }
+                self.weatherManager.getCurrentWeatherWithCood(lat: result.latitude, lon: result.longitude) {
+                    
                 }
             }
             
@@ -83,7 +89,7 @@ class MainViewController: UIViewController {
                 guard let location = self.locationManager.location else {return}
                 guard let temp = result?.locality else {return}
                 self.name = temp
-                self.weatherManager.getWeather(CLlocation: location) {
+                self.weatherManager.getCurrentWeather(CLlocation: location) {
                     
                 }
                 self.weatherManager.saveLocationData(location: self.name) {
@@ -148,20 +154,30 @@ extension MainViewController: CLLocationManagerDelegate {
 
 extension MainViewController: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return weatherManager.weatherDataArray.count
+        return weatherManager.currentWeatherDataArray.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "WeatherCell", for: indexPath) as! WeatherCell
-        cell.datas = weatherManager.weatherDataArray[indexPath.row]
-        cell.cityLabel.text = weatherManager.savedLocationArray[indexPath.row].location
+        
+        DispatchQueue.main.async {
+            cell.datas = self.weatherManager.currentWeatherDataArray[indexPath.row]
+            cell.cityLabel.text = self.weatherManager.savedLocationArray[indexPath.row].location
+        }
+//        cell.temperatureLabel.text = "\(weatherManager.currentWeatherDataArray[indexPath.row].temperature)"
+//        cell.feelsLikeLabel.text = "\(weatherManager.currentWeatherDataArray[indexPath.row].apparentTemperature)"
+//        let tempHumidity = (weatherManager.currentWeatherDataArray[indexPath.row].humidity) * 100
+//        cell.humidityLabel.text = String(format: "%.1f", tempHumidity)
+//        cell.cityLabel.text = weatherManager.savedLocationArray[indexPath.row].location
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let itemWidth = collectionView.bounds.width
-        let itemHeight = collectionView.bounds.height
-        return CGSize(width: itemWidth, height: itemHeight)
+//        let itemWidth = collectionView.bounds.width
+//        let itemHeight = collectionView.bounds.height
+//        return CGSize(width: itemWidth, height: itemHeight)
+        let cvRect = collectionView.frame
+        return CGSize(width: cvRect.width, height: cvRect.height)
     }
 }
 

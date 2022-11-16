@@ -28,9 +28,10 @@ class WeatherManager: ObservableObject {
     var delegateReload: ScrollDelegate?
 //    var delegate: GetWeatherDataDelegate?
     var savedLocationArray: [SavedLocationData] = []
-    var weatherDataArray: [Weather] = []{
+    var currentWeatherDataArray: [CurrentWeather] = []{
         didSet {
-            print("WeatherDataArray Changed")
+            print("CurrentWeatherDataArray Changed")
+            print(self.currentWeatherDataArray)
             delegateReload?.views()
         }
     }
@@ -46,11 +47,11 @@ class WeatherManager: ObservableObject {
 //        }
 //    }
     
-    func getWeather(CLlocation: CLLocation, completion: @escaping () -> Void){
+    func getCurrentWeather(CLlocation: CLLocation, completion: @escaping () -> Void){
         Task {
             do {
-                let result = try await weatherService.weather(for: CLlocation)
-                weatherDataArray.append(result)
+                let result = try await weatherService.weather(for: CLlocation, including: .current)
+                currentWeatherDataArray.insert(result, at: 0)
             } catch {
                 print(error)
             }
@@ -58,11 +59,11 @@ class WeatherManager: ObservableObject {
     }
 
     
-    func getWeatherWithCood(lat: CLLocationDegrees, lon: CLLocationDegrees, completion: @escaping () -> Void){
+    func getCurrentWeatherWithCood(lat: CLLocationDegrees, lon: CLLocationDegrees, completion: @escaping () -> Void){
         Task {
             do {
-                let result = try await weatherService.weather(for: .init(latitude: lat, longitude: lon))
-                weatherDataArray.append(result)
+                let result = try await weatherService.weather(for: CLLocation.init(latitude: lat, longitude: lon), including: .current)
+                currentWeatherDataArray.insert(result, at: 0)
             } catch {
                 print(error)
             }
@@ -70,13 +71,14 @@ class WeatherManager: ObservableObject {
     }
     
     func getLocationArray() -> [SavedLocationData]{
-        return savedLocationArray
+        let temp = savedLocationArray.sorted(by: {$0.savedDate! < $1.savedDate!})
+        return temp
     }
     
     func saveLocationData(location: String, completion: @escaping () -> Void){
         coreDataManager.saveLocation(location: location) {
             self.savedLocationArray = self.coreDataManager.readLocation()
-            
+
             completion()
         }
         
