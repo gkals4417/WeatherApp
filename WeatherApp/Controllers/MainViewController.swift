@@ -43,7 +43,7 @@ class MainViewController: UIViewController {
     
     private func initialUI(){
         UIGraphicsBeginImageContext(self.view.frame.size)
-                    UIImage(named: "background")?.draw(in: self.view.bounds)
+                    UIImage(named: "background2")?.draw(in: self.view.bounds)
                     let image: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
                     UIGraphicsEndImageContext()
                     self.view.backgroundColor = UIColor(patternImage: image)

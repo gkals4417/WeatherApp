@@ -16,7 +16,9 @@
 		4D6A85372924999D0050E38C /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6A85362924999D0050E38C /* DetailViewController.swift */; };
 		4D6A85392924AD5A0050E38C /* Weather - Data Sources.html in Resources */ = {isa = PBXBuildFile; fileRef = 4D6A85382924AD5A0050E38C /* Weather - Data Sources.html */; };
 		4D6A853B2924AF3E0050E38C /* InformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6A853A2924AF3E0050E38C /* InformationViewController.swift */; };
+		4D6A853D2925244F0050E38C /* InformCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6A853C2925244F0050E38C /* InformCell.swift */; };
 		4D7C84BE28EE82D200FD4B0C /* SideMenu in Frameworks */ = {isa = PBXBuildFile; productRef = 4D7C84BD28EE82D200FD4B0C /* SideMenu */; };
+		4D972F522926693B00EFD8F5 /* PrivacyWebView]Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D972F512926693B00EFD8F5 /* PrivacyWebView]Controller.swift */; };
 		4DB17562291CD36900DB5E86 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB17561291CD36900DB5E86 /* MainViewController.swift */; };
 		4DB17564291CD39B00DB5E86 /* WeatherManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB17563291CD39B00DB5E86 /* WeatherManager.swift */; };
 		4DB17569291D32E200DB5E86 /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB17568291D32E200DB5E86 /* LocationViewController.swift */; };
@@ -40,6 +42,8 @@
 		4D6A85362924999D0050E38C /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		4D6A85382924AD5A0050E38C /* Weather - Data Sources.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "Weather - Data Sources.html"; sourceTree = "<group>"; };
 		4D6A853A2924AF3E0050E38C /* InformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationViewController.swift; sourceTree = "<group>"; };
+		4D6A853C2925244F0050E38C /* InformCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformCell.swift; sourceTree = "<group>"; };
+		4D972F512926693B00EFD8F5 /* PrivacyWebView]Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PrivacyWebView]Controller.swift"; sourceTree = "<group>"; };
 		4DB17561291CD36900DB5E86 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		4DB17563291CD39B00DB5E86 /* WeatherManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherManager.swift; sourceTree = "<group>"; };
 		4DB17568291D32E200DB5E86 /* LocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
@@ -104,6 +108,7 @@
 				4DB17568291D32E200DB5E86 /* LocationViewController.swift */,
 				4D6A85362924999D0050E38C /* DetailViewController.swift */,
 				4D6A853A2924AF3E0050E38C /* InformationViewController.swift */,
+				4D972F512926693B00EFD8F5 /* PrivacyWebView]Controller.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -114,6 +119,7 @@
 				4D20C30028ED300000C279E4 /* Main.storyboard */,
 				4DB17570291E114D00DB5E86 /* LocationCell.swift */,
 				4DB17572291E2CA800DB5E86 /* WeatherCell.swift */,
+				4D6A853C2925244F0050E38C /* InformCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -216,6 +222,8 @@
 				4DB1756C291E05D500DB5E86 /* SavedLocationData+CoreDataClass.swift in Sources */,
 				4D20C2FB28ED300000C279E4 /* AppDelegate.swift in Sources */,
 				4DB17564291CD39B00DB5E86 /* WeatherManager.swift in Sources */,
+				4D972F522926693B00EFD8F5 /* PrivacyWebView]Controller.swift in Sources */,
+				4D6A853D2925244F0050E38C /* InformCell.swift in Sources */,
 				4DB17571291E114D00DB5E86 /* LocationCell.swift in Sources */,
 				4D20C2FD28ED300000C279E4 /* SceneDelegate.swift in Sources */,
 				4DB17573291E2CA800DB5E86 /* WeatherCell.swift in Sources */,
