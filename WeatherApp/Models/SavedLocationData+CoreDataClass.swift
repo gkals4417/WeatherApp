@@ -2,7 +2,7 @@
 //  SavedLocationData+CoreDataClass.swift
 //  WeatherApp
 //
-//  Created by Hamin Jeong on 2022/10/06.
+//  Created by Hamin Jeong on 2022/11/11.
 //
 //
 

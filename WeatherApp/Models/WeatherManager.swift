@@ -2,161 +2,96 @@
 //  WeatherManager.swift
 //  WeatherApp
 //
-//  Created by Hamin Jeong on 2022/10/06.
+//  Created by Hamin Jeong on 2022/11/10.
 //
 
 import UIKit
-import CoreData
+import WeatherKit
 import CoreLocation
+import CoreData
 
 protocol ScrollDelegate: AnyObject {
     func views()
 }
 
-class WeatherManager{
+class WeatherManager: ObservableObject {
+    
     static let shared = WeatherManager()
+    let coreDataManager = CoreDataManager()
+    let weatherService = WeatherService()
+    
     private init(){
-        fetchLocationFromCoreData {
-//            self.cityNameSavedArray = self.locationSavedArray.map({ result in
-//                result.location ?? ""
-//            })
-//            print("Initial cityNameSavedArray = \(self.cityNameSavedArray)")
-            print("Initial CoreData Array : \(self.locationSavedArray)")
-            print("Fetch Location from CoreData.")
-        }
+        savedLocationArray = coreDataManager.readLocation()
+        print("WeatherManager Init : \(savedLocationArray)")
     }
     
-    private let networkManager = WeatherNetworkManager.shared
-    private let coreDataManager = CoreDataManager.shared
-    var locationSavedArray: [SavedLocationData] = []
-    //var cityNameSavedArray: [String] = []
-    var weatherDatasArray: [Welcome] = [] {
+    var delegateReload: ScrollDelegate?
+//    var delegate: GetWeatherDataDelegate?
+    var savedLocationArray: [SavedLocationData] = []
+    var currentWeatherDataArray: [CurrentWeather] = []{
         didSet {
-            print("weatherDatasArray Set")
-        }
-    }
-    var weatherDatas: Welcome? {
-        didSet {
-            print("weatherData Set")
+            print("CurrentWeatherDataArray Changed")
+            print(self.currentWeatherDataArray)
+            delegateReload?.views()
         }
     }
     
-    // MARK: - API Methods
     
-//    func initialFetchDatasFromAPI(lat: CLLocationDegrees, lon: CLLocationDegrees){
-//        fetchDatasFromAPI(lat: lat, lon: lon) {
-//            print("Initial Setting")
+//    var weatherData: Weather?{
+//        didSet {
+//            print("WeatherData Changed Detected")
+////            delegate?.sendToVC(data: weatherData)
+//            guard let data = weatherData else {return}
+//            weatherDataArray.append(data)
+//            delegateReload?.views()
 //        }
 //    }
     
-    
-    func fetchDatasFromAPI(lat: CLLocationDegrees, lon: CLLocationDegrees, completion: @escaping () -> Void){
-        getDatasFromAPI(lat: lat, lon: lon) {
-            completion()
-        }
-    }
-    
-    private func getDatasFromAPI(lat: CLLocationDegrees, lon: CLLocationDegrees, completion: @escaping () -> Void){
-        networkManager.fetchWeather(latitude: lat, longitude: lon) { result in
-            switch result {
-            case .success(let successData):
-                self.weatherDatas = successData
-                //self.weatherDatasArray.append(successData)
-                self.weatherDatasArray.insert(successData, at: 0)
-//                if !self.cityNameSavedArray.contains(self.weatherDatas!.name){
-//                    self.cityNameSavedArray.append(self.weatherDatas!.name)
-//                }
-//
-                print("WeatherDatasArray : \(self.weatherDatasArray)")
-                //print("City Name Saved Array : \(self.cityNameSavedArray)")
-                completion()
-            case .failure(let error):
+    func getCurrentWeather(CLlocation: CLLocation, completion: @escaping () -> Void){
+        Task {
+            do {
+                let result = try await weatherService.weather(for: CLlocation, including: .current)
+                currentWeatherDataArray.insert(result, at: 0)
+            } catch {
                 print(error)
-                completion()
             }
-        }
-    }
-    
-    func fetchDatasCityNameFromAPI(cityName: String, completion: @escaping () -> Void){
-        getDatasCityNameFromAPI(cityName: cityName) {
-            completion()
-        }
-    }
-    
-    private func getDatasCityNameFromAPI(cityName: String, completion: @escaping () -> Void){
-        networkManager.fetchWeatherWithCityName(cityName: cityName) { result in
-            switch result {
-            case .success(let successData):
-                self.weatherDatas = successData
-//                self.weatherDatasArray.append(successData)
-                self.weatherDatasArray.insert(successData, at: 0)
-//                if !self.cityNameSavedArray.contains(self.weatherDatas!.name){
-//                    self.cityNameSavedArray.append(self.weatherDatas!.name)
-//                }
-//
-                print("WeatherDatasArray : \(self.weatherDatasArray)")
-                //print("City Name Saved Array : \(self.cityNameSavedArray)")
-                completion()
-            case .failure(let error):
-                print(error)
-                completion()
-            }
-        }
-    }
-    // MARK: - CoreData Methods
-  
-    func setupBasicFromAPI(completion: @escaping () -> Void){
-        getDatasFromAPI(lat: 37, lon: 127) {
-            completion()
         }
     }
 
     
-    //READ
-    private func fetchLocationFromCoreData(completion: @escaping () -> Void){
-        locationSavedArray = coreDataManager.getLocationSavedArrayFromCoreData()
-        completion()
-    }
-    
-    
-    //DELETE
-    func deleteLocationFromCoreData(with location: SavedLocationData, completion: @escaping () -> Void){
-        coreDataManager.deleteLocation(with: location) {
-            self.fetchLocationFromCoreData {
-                completion()
+    func getCurrentWeatherWithCood(lat: CLLocationDegrees, lon: CLLocationDegrees, completion: @escaping () -> Void){
+        Task {
+            do {
+                let result = try await weatherService.weather(for: CLLocation.init(latitude: lat, longitude: lon), including: .current)
+                currentWeatherDataArray.insert(result, at: 0)
+            } catch {
+                print(error)
             }
         }
     }
     
-    func deleteLocation(with location: Welcome, completion: @escaping () -> Void){
-        let locationSaved = locationSavedArray.filter { $0.location == location.name
-            
+    func getLocationArray() -> [SavedLocationData]{
+        let temp = savedLocationArray.sorted(by: {$0.savedDate! < $1.savedDate!})
+        return temp
+    }
+    
+    func saveLocationData(location: String, completion: @escaping () -> Void){
+        coreDataManager.saveLocation(location: location) {
+            self.savedLocationArray = self.coreDataManager.readLocation()
+
+            completion()
         }
         
-        if let targetLocationSaved = locationSaved.first{
-            self.deleteLocationFromCoreData(with: targetLocationSaved) {
-                completion()
-            }
-        } else {
-            completion()
-        }
+        print("\(#function) : CoreData Saved")
     }
     
-    //UPDATE
-    func updateLocationFromCoreData(with location: SavedLocationData, completion: @escaping () -> Void){
-        coreDataManager.updateLocation(with: location) {
-            self.fetchLocationFromCoreData {
-                completion()
-            }
-        }
-    }
-
-    //CREATE
-    func createLocationData(with location: Welcome, completion: @escaping () -> Void){
-        coreDataManager.saveLocation(with: location, privacyLocation: false, units: "metric") {
+    func deleteLocationData(targetData: SavedLocationData, completion: @escaping () -> Void){
+        coreDataManager.deleteLocation(data: targetData) {
+            self.savedLocationArray = self.coreDataManager.readLocation()
             completion()
         }
+        print("\(#function) : CoreData Deleted")
     }
-
-    
 }
+
+

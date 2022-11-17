@@ -1,154 +1,185 @@
 //
-//  ViewController.swift
+//  MainViewController.swift
 //  WeatherApp
 //
-//  Created by Hamin Jeong on 2022/10/05.
-//
+//  Created by Hamin Jeong on 2022/11/10.
+//  Weather
 
 import UIKit
+import WeatherKit
 import CoreLocation
 import SideMenu
 
+protocol GetWeatherDataDelegate{
+    func sendToVC(data: Weather)
+}
 
 class MainViewController: UIViewController {
-    
-    @IBOutlet weak var conditionImageView: UIImageView!
-    @IBOutlet weak var collectionView: UICollectionView!
-    @IBOutlet weak var addButton: UIBarButtonItem!
-    
-    let weatherManager = WeatherManager.shared
-    let locationManager = CLLocationManager()
-    
-    var lon: CLLocationDegrees = 0
-    var lat: CLLocationDegrees = 0
 
+    @IBOutlet weak var collectionView: UICollectionView!
+    
+    private let weatherManager = WeatherManager.shared
+    private let locationManager = CLLocationManager()
+    
+    var locationName: String = ""
+    var name = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        collectionView.dataSource = self
-        collectionView.delegate = self
-        
-        locationManager.delegate = self
-        locationManager.requestWhenInUseAuthorization()
-        locationManager.requestLocation()
-        
-        UIGraphicsBeginImageContext(self.view.frame.size)
-            UIImage(named: "background")?.draw(in: self.view.bounds)
-            let image: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
-            UIGraphicsEndImageContext()
-            self.view.backgroundColor = UIColor(patternImage: image)
-        
-        setupBasicData()
+        startFunc()
+        initialUI()
+        basicSetupFunc()
     }
     
-
-    // MARK: - Set Basic Data (Initial Setting)
+    private func startFunc(){
+        locationManager.startUpdatingLocation()
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.delegate = self
+        weatherManager.delegateReload = self
+        
+        collectionView.delegate = self
+        collectionView.dataSource = self
+    }
     
-    func setupBasicData(){
-        if weatherManager.locationSavedArray.isEmpty {
-            weatherManager.fetchDatasFromAPI(lat: 37.5326, lon: 127.024612) {
-                print("Hello Swift")
-                DispatchQueue.main.async {
-                    self.collectionView.reloadData()
-//                    self.weatherManager.createLocationData(with: self.weatherManager.weatherDatas!) {
-//                        print("Saved Basic Location")
-//                        print("After Basic Location Saved : \(self.weatherManager.locationSavedArray)")
+    private func initialUI(){
+        UIGraphicsBeginImageContext(self.view.frame.size)
+                    UIImage(named: "background2")?.draw(in: self.view.bounds)
+                    let image: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+                    UIGraphicsEndImageContext()
+                    self.view.backgroundColor = UIColor(patternImage: image)
+    }
+    
+    private func basicSetupFunc(){
+        var locationArray: [String] = []
+        var removeDuplicateArray: [String] = []
+//        var lat: CLLocationDegrees = 0
+//        var lon: CLLocationDegrees = 0
+        
+        weatherManager.savedLocationArray.forEach { result in
+            guard let location = result.location else {return}
+            locationArray.append(location)
+            print("Location Array : \(locationArray)")
+            removeDuplicateArray = Array(Set(locationArray))
+            print("flatMapped Location Array : \(removeDuplicateArray)")
+        }
+        
+        for location in removeDuplicateArray {
+//            self.getCoordinate(addressString: location) { result, error in
+//                lat = result.latitude
+//                lon = result.longitude
+//                DispatchQueue.main.async {
+//                    self.weatherManager.getWeatherWithCood(lat: lat, lon: lon) {
+//
 //                    }
-                }
-            }
-        } else {
-            var locationArray:[String] = []
-            var removeDuplicateArray: [String] = []
+//                }
+//            }
             
-            weatherManager.locationSavedArray.forEach { result in
-                locationArray.append(result.location ?? "")
-                print("Location Array : \(locationArray)")
-                removeDuplicateArray = Array(Set(locationArray))
-                print("flatMapped Location Array : \(removeDuplicateArray)")
-            }
-            for location in removeDuplicateArray {
-                weatherManager.fetchDatasCityNameFromAPI(cityName: location) {
-                    DispatchQueue.main.async {
-                        self.collectionView.reloadData()
-                    }
+            self.getCoordinate(addressString: location) { result, error in
+                self.weatherManager.getCurrentWeatherWithCood(lat: result.latitude, lon: result.longitude) {
+                    
                 }
             }
+            
+            self.collectionView.reloadData()
         }
     }
-    
-    // MARK: - @IBAction Methods
-
-    @IBAction func addButtonTapped(_ sender: UIBarButtonItem) {
-        weatherManager.fetchDatasFromAPI(lat: lat, lon: lon) {
-//              self.weatherManager.weatherDatasArray.append(self.weatherManager.weatherDatas!)
-            
+    @IBAction func locationButtonTapped(_ sender: UIBarButtonItem) {
+        lookUpCurrentLocation { result in
             DispatchQueue.main.async {
-                self.collectionView.reloadData()
-//                self.weatherManager.createLocationData(with: self.weatherManager.weatherDatasArray.last!) {
-//                    print("weatherDataArray saved in MainViewController")
-//                }
-                self.collectionView.scrollsToTop = true
+                guard let location = self.locationManager.location else {return}
+                guard let temp = result?.locality else {return}
+                self.name = temp
+                self.weatherManager.getCurrentWeather(CLlocation: location) {
+                    
+                }
+                self.weatherManager.saveLocationData(location: self.name) {
+                    
+                }
             }
         }
     }
 }
 
-
-// MARK: - Extension : CollectionView DataSource & Delegate
-
-extension MainViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+extension MainViewController: CLLocationManagerDelegate {
     
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]){
+        locationManager.stopUpdatingLocation()
+    }
+    
+    
+    // MARK: - Coordinate to Placemark name
+    
+    func lookUpCurrentLocation(completionHandler: @escaping (CLPlacemark?) -> Void ) {
+        if let lastLocation = self.locationManager.location {
+            let geocoder = CLGeocoder()
+
+            // Look up the location and pass it to the completion handler
+            geocoder.reverseGeocodeLocation(lastLocation,
+                        completionHandler: { (placemarks, error) in
+                if error == nil {
+                    let firstLocation = placemarks?[0]
+                    completionHandler(firstLocation)
+                }
+                else {
+                 // An error occurred during geocoding.
+                    completionHandler(nil)
+                }
+            })
+        }
+        else {
+            // No location was available.
+            completionHandler(nil)
+        }
+    }
+
+    
+    // MARK: - Placemark name to Coordinate
+
+    func getCoordinate(addressString : String,
+            completionHandler: @escaping(CLLocationCoordinate2D, NSError?) -> Void ) {
+        let geocoder = CLGeocoder()
+        geocoder.geocodeAddressString(addressString) { (placemarks, error) in
+            if error == nil {
+                if let placemark = placemarks?[0] {
+                    let location = placemark.location!
+                        
+                    completionHandler(location.coordinate, nil)
+                    return
+                }
+            }
+            completionHandler(kCLLocationCoordinate2DInvalid, error as NSError?)
+        }
+    }
+}
+
+extension MainViewController: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return weatherManager.weatherDatasArray.count
+        return weatherManager.currentWeatherDataArray.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MainWeatherCollection", for: indexPath) as! WeatherCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "WeatherCell", for: indexPath) as! WeatherCell
         
-        if weatherManager.weatherDatasArray.count > indexPath.row {
-            let list = weatherManager.weatherDatasArray[indexPath.row]
-            cell.datas = list
+        DispatchQueue.main.async {
+            cell.datas = self.weatherManager.currentWeatherDataArray[indexPath.row]
+            cell.cityLabel.text = self.weatherManager.savedLocationArray[indexPath.row].location
         }
-        
+//        cell.temperatureLabel.text = "\(weatherManager.currentWeatherDataArray[indexPath.row].temperature)"
+//        cell.feelsLikeLabel.text = "\(weatherManager.currentWeatherDataArray[indexPath.row].apparentTemperature)"
+//        let tempHumidity = (weatherManager.currentWeatherDataArray[indexPath.row].humidity) * 100
+//        cell.humidityLabel.text = String(format: "%.1f", tempHumidity)
+//        cell.cityLabel.text = weatherManager.savedLocationArray[indexPath.row].location
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-
-//                //For entire screen size
-//                let screenSize = UIScreen.main.bounds.size
-//                return screenSize
-//                //If you want to fit the size with the size of ViewController use bellow
-//                let viewControllerSize = self.view.frame.size
-//                return viewControllerSize
-//
-//                // Even you can set the cell to uicollectionview size
-//                let cvRect = collectionView.frame
-//                return CGSize(width: cvRect.width, height: cvRect.height)
-
+//        let itemWidth = collectionView.bounds.width
+//        let itemHeight = collectionView.bounds.height
+//        return CGSize(width: itemWidth, height: itemHeight)
         let cvRect = collectionView.frame
         return CGSize(width: cvRect.width, height: cvRect.height)
     }
-
 }
-
-
-// MARK: - Extension : CoreLocation Delegate
-
-extension MainViewController: CLLocationManagerDelegate{
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        guard let location = locations.last else {return}
-        locationManager.stopUpdatingLocation()
-        lat = location.coordinate.latitude
-        lon = location.coordinate.longitude
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        print(error)
-    }
-}
-
-
-// MARK: - Extension : SideMenuNavigationControllerDelegate
 
 extension MainViewController: SideMenuNavigationControllerDelegate {
     func sideMenuDidDisappear(menu: SideMenuNavigationController, animated: Bool) {
@@ -156,13 +187,17 @@ extension MainViewController: SideMenuNavigationControllerDelegate {
     }
 }
 
-//추가를 하거나 tableView에서 제거를 하면, CoreData를 관리하는 함수는 건들지 말고,
-//weatherDataArray에만 추가, 제거를 한 뒤에, 마지막에 SceneDelegate에서 weatherDataArray의 location값을
-//locationSavedArray에 비교해서 저장하는 것으로 변경 예정.
+//extension MainViewController: GetWeatherDataDelegate {
+//    func sendToVC(data: Weather){
+//        tempWeatherData = data
+//    }
+//}
 
 extension MainViewController: ScrollDelegate {
-    func views() {
-        collectionView.scrollsToTop = true
-        collectionView.reloadData()
+    func views(){
+        DispatchQueue.main.async {
+            self.collectionView.scrollsToTop = true
+            self.collectionView.reloadData()
+        }
     }
 }

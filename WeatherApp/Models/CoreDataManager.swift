@@ -2,32 +2,48 @@
 //  CoreDataManager.swift
 //  WeatherApp
 //
-//  Created by Hamin Jeong on 2022/10/06.
+//  Created by Hamin Jeong on 2022/11/11.
 //
 
 import UIKit
 import CoreData
 
 class CoreDataManager {
-    static let shared = CoreDataManager()
-    private init(){}
-    
     let appDelegate = UIApplication.shared.delegate as? AppDelegate
-    
     lazy var context = appDelegate?.persistentContainer.viewContext
-    
     let modelName: String = "SavedLocationData"
     
-    // MARK: - CREATE
+    // MARK: - READ
     
-    func saveLocation(with location: Welcome, privacyLocation: Bool, units: String, completion: @escaping () -> Void){
+    func readLocation() -> [SavedLocationData]{
+        var array: [SavedLocationData] = []
+        
+        if let context = context {
+            let request = NSFetchRequest<NSManagedObject>(entityName: self.modelName)
+            let dataOrder = NSSortDescriptor(key: "savedDate", ascending: false)
+            request.sortDescriptors = [dataOrder]
+            
+            do {
+                if let fetched = try context.fetch(request) as? [SavedLocationData]{
+                    array = fetched
+                }
+            } catch {
+                print("Failed Read")
+            }
+        }
+        return array
+    }
+
+    
+    
+    // MARK: - SAVE
+    
+    func saveLocation(location: String, completion: @escaping () -> Void){
         if let context = context {
             if let entity = NSEntityDescription.entity(forEntityName: self.modelName, in: context){
-                if let locationSaved = NSManagedObject(entity: entity, insertInto: context) as? SavedLocationData {
-                    locationSaved.location = location.name
-                    locationSaved.privacyLocation = privacyLocation
-                    locationSaved.units = units
-                    locationSaved.savedDate = Date()
+                if let saveTarget = NSManagedObject(entity: entity, insertInto: context) as? SavedLocationData {
+                    saveTarget.location = location
+                    saveTarget.savedDate = Date()
                     
                     if context.hasChanges {
                         do {
@@ -41,88 +57,25 @@ class CoreDataManager {
                 }
             }
         }
-        completion()
     }
-    
-    
-    // MARK: - READ
-    
-    func getLocationSavedArrayFromCoreData() -> [SavedLocationData]{
-        var savedLocationList: [SavedLocationData] = []
-        
-        if let context = context {
-            let request = NSFetchRequest<NSManagedObject>(entityName: self.modelName)
-            let savedDate = NSSortDescriptor(key: "savedDate", ascending: true)
-            request.sortDescriptors = [savedDate]
-            
-            do {
-                if let fetchedLocationList = try context.fetch(request) as? [SavedLocationData]{
-                    savedLocationList = fetchedLocationList
-                }
-            } catch {
-                print("Failed Fetched Location List")
-            }
-        }
-        return savedLocationList
-    }
-    
-    
-    // MARK: - UPDATE
-    
-    func updateLocation(with location: SavedLocationData, completion: @escaping () -> Void){
-        guard let savedDate = location.savedDate else {
-            completion()
-            return
-        }
-        
-        if let context = context {
-            let request = NSFetchRequest<NSManagedObject>(entityName: self.modelName)
-            request.predicate = NSPredicate(format: "savedDate = %@", savedDate as CVarArg)
-            
-            do {
-                if let fetchedLocationList = try context.fetch(request) as? [SavedLocationData]{
-                    if var targetLocation = fetchedLocationList.first{
-                        targetLocation = location
-                        if context.hasChanges{
-                            do {
-                                try context.save()
-                                completion()
-                            } catch {
-                                print(error)
-                                completion()
-                            }
-                        }
-                    }
-                }
-                completion()
-            } catch {
-                print("Failed Update Location")
-                completion()
-            }
-        }
-    }
-    
-    
-    
-    
-    
+
     // MARK: - DELETE
     
-    func deleteLocation(with location: SavedLocationData, completion: @escaping () -> Void){
-        guard let locationData = location.location else {
+    func deleteLocation(data: SavedLocationData, completion: @escaping () -> Void){
+        guard let date = data.savedDate else {
             completion()
             return
         }
         
         if let context = context {
             let request = NSFetchRequest<NSManagedObject>(entityName: self.modelName)
-            request.predicate = NSPredicate(format: "location CONTAINS[cd] %@", locationData)
+            request.predicate = NSPredicate(format: "savedDate = %@", date as CVarArg)
             
             do {
-                if let fetchedLocationList = try context.fetch(request) as? [SavedLocationData]{
-                    if let targetLocation = fetchedLocationList.first{
-                        context.delete(targetLocation)
-                        if context.hasChanges{
+                if let fetched = try context.fetch(request) as? [SavedLocationData]{
+                    if let target = fetched.first{
+                        context.delete(target)
+                        if context.hasChanges {
                             do {
                                 try context.save()
                                 completion()
@@ -135,14 +88,10 @@ class CoreDataManager {
                 }
                 completion()
             } catch {
-                print("Failed Delete Location")
+                print("Failed Delete")
                 completion()
             }
         }
     }
-    
-    
-    
-    
 
 }

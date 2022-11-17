@@ -2,7 +2,7 @@
 //  SavedLocationData+CoreDataProperties.swift
 //  WeatherApp
 //
-//  Created by Hamin Jeong on 2022/10/06.
+//  Created by Hamin Jeong on 2022/11/11.
 //
 //
 
@@ -17,8 +17,6 @@ extension SavedLocationData {
     }
 
     @NSManaged public var location: String?
-    @NSManaged public var privacyLocation: Bool
-    @NSManaged public var units: String?
     @NSManaged public var savedDate: Date?
 
 }
