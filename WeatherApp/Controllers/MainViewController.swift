@@ -194,10 +194,19 @@ extension MainViewController: SideMenuNavigationControllerDelegate {
 //}
 
 extension MainViewController: ScrollDelegate {
+    
+    func scrollTo(indexPath: IndexPath) {
+        self.collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+        self.collectionView.reloadData()
+        
+    }
+    
     func views(){
         DispatchQueue.main.async {
             self.collectionView.scrollsToTop = true
             self.collectionView.reloadData()
         }
     }
+    
+    
 }

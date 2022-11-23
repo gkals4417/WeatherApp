@@ -17,7 +17,7 @@ class LocationViewController: UIViewController {
     
     private let weatherManager = WeatherManager.shared
     private let locationManager = CLLocationManager()
-    private var delegate: ScrollDelegate?
+    var delegate: ScrollDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,6 +68,8 @@ extension LocationViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: "toDetailVC", sender: indexPath)
+        delegate?.scrollTo(indexPath: indexPath)
+        dismiss(animated: true)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

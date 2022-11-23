@@ -12,6 +12,7 @@ import CoreData
 
 protocol ScrollDelegate: AnyObject {
     func views()
+    func scrollTo(indexPath: IndexPath)
 }
 
 class WeatherManager: ObservableObject {
@@ -56,6 +57,7 @@ class WeatherManager: ObservableObject {
                 print(error)
             }
         }
+        completion()
     }
 
     
@@ -68,6 +70,7 @@ class WeatherManager: ObservableObject {
                 print(error)
             }
         }
+        completion()
     }
     
     func getLocationArray() -> [SavedLocationData]{
